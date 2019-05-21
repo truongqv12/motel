@@ -1,0 +1,44 @@
+.max-width-content {
+  width: -moz-max-content;
+  width: -webkit-max-content;
+  width: max-content;
+}
+
+.btn-action {
+  padding: 5px 10px;
+  margin: 1px;
+  display: inline-block;
+  width: 31px;
+  height: 23px;
+}
+
+.label-violet {
+  background: #652C90;
+}
+
+.show-avatar {
+  overflow: hidden;
+}
+
+.show-avatar img {
+  width: 200px;
+  height: 200px;
+  background-color: #b0b2ad;
+  border: 2px solid #b0b2ad;
+}
+.show-product-img img {
+  width: 200px;
+  height: 300px;
+}
+.show-avatar i {
+  padding-right: 5px;
+}
+
+.loading_view {
+  padding-bottom: 30px;
+  text-align: center;
+  display: none;
+  width: auto;
+  height: 200px;
+}
+
