@@ -20,9 +20,11 @@
                                                 class="select optional form-control fct-profile-edit"
                                                 id="cbCity">
                                             <option value=""></option>
-                                            @foreach ($cities ?: [] as $item)
-                                                <option value="{{$item->get('id')}}">{{$item->get('name')}}</option>
-                                            @endforeach
+                                            @if($cities)
+                                                @foreach ($cities ?: [] as $item)
+                                                    <option value="{{$item->get('id')}}">{{$item->get('name')}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="input_search" id="loadDistrict">
@@ -51,7 +53,8 @@
                             </div>
                         </div>
                         <div class="w-100 text-center">
-                            <button type="submit" class="btn btn_search"><span class="icon-search3"></span>Tìm kiếm</button>
+                            <button type="submit" class="btn btn_search"><span class="icon-search3"></span>Tìm kiếm
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -98,43 +101,45 @@
                 <h2>Mới đăng gần đây</h2>
             </div>
             <div class="row">
-                @foreach($motels ?: [] as $item)
-                    <div class="col-md-4 mb-4">
-                        <!-- Post Article -->
-                        <article class="ipost room-item">
-                            <div class="entry-image mb-3">
-                                <a href="{{$item->get('url')}}">
-                                    <img class="img-fit" src="{{$item->get('avatar')}}"
-                                         alt="{{$item->get('title')}}"></a>
-                            </div>
-                            <div class="entry-title">
-                                <h3><a href="{{$item->get('url')}}">{{$item->get('title')}}</a></h3>
-                            </div>
-                            <div class="clearfix"></div>
-                            <ul class="entry-meta">
-                                <li><i class="icon-time"></i><a
-                                            href="javascript:;">{{ $item->get('created_at')->format('d/m/Y H:i')}}</a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <div class="entry-content mt-0">
-                                <div class="room-info">
-                                    <div class="info-item d-flex justify-content-between align-items-center">
+                @if($motels)
+                    @foreach($motels ?: [] as $item)
+                        <div class="col-md-4 mb-4">
+                            <!-- Post Article -->
+                            <article class="ipost room-item">
+                                <div class="entry-image mb-3">
+                                    <a href="{{$item->get('url')}}">
+                                        <img class="img-fit" src="{{$item->get('avatar')}}"
+                                             alt="{{$item->get('title')}}"></a>
+                                </div>
+                                <div class="entry-title">
+                                    <h3><a href="{{$item->get('url')}}">{{$item->get('title')}}</a></h3>
+                                </div>
+                                <div class="clearfix"></div>
+                                <ul class="entry-meta">
+                                    <li><i class="icon-time"></i><a
+                                                href="javascript:;">{{ $item->get('created_at')->format('d/m/Y H:i')}}</a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div class="entry-content mt-0">
+                                    <div class="room-info">
+                                        <div class="info-item d-flex justify-content-between align-items-center">
                                         <span><i class="far fa-stop-circle"></i> Diện tích: <b>{{$item->get('area')}}
                                                 m<sup>2</sup></b></span>
-                                        <span class="pull-right">
+                                            <span class="pull-right">
                                         <i class="icon-eye"></i> Lượt xem: <strong>{{$item->get('total_view')}}</strong></span>
+                                        </div>
+                                        <div class="info-item"><i class="icon-map-marker"></i> Địa
+                                            chỉ: {{$item->get('address')}}
+                                        </div>
+                                        <div class="info-item room-price"><i class="icon-money"></i> Giá thuê:
+                                            <strong>{{$item->get('price')}}</strong></div>
                                     </div>
-                                    <div class="info-item"><i class="icon-map-marker"></i> Địa
-                                        chỉ: {{$item->get('address')}}
-                                    </div>
-                                    <div class="info-item room-price"><i class="icon-money"></i> Giá thuê:
-                                        <strong>{{$item->get('price')}}</strong></div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-                @endforeach
+                            </article>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
 
