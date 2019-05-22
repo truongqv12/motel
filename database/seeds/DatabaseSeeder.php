@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminUserTableSeeder::class);
         \Illuminate\Support\Facades\DB::table('categories')->truncate();
         $this->call(CategoryTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
+//        $this->call(PostsTableSeeder::class);
     }
 }

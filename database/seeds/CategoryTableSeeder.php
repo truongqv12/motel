@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
             'cat_type' => 'MOTEL',
         ]);
 
-        factory(\App\Models\Category::class, 4)->create();
+//        factory(\App\Models\Category::class, 4)->create();
 
     }
 }
