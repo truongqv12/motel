@@ -15,7 +15,8 @@
         "laravel/tinker": "^1.0",
         "ryannielson/meta": "^1.1",
         "spatie/laravel-fractal": "^5.5",
-        "unisharp/laravel-filemanager": "~1.8"
+        "unisharp/laravel-filemanager": "~1.8",
+        "fzaninotto/faker": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
