@@ -17,7 +17,7 @@ class AdminUserTableSeeder extends Seeder
                 'email' => 'truongqv13@gmail.com',
                 'phone' => '0379573155',
                 'username' => 'admin',
-                'password' => bcrypt('123456'),
+                'password' => 123456,
                 'admin_isadmin' => 1,
                 'add' => 1,
                 'edit' => 1,
