@@ -133,9 +133,11 @@
                                                 <div class="gllpMap">Google Maps</div>
                                                 <!-- <br/>
                                                 lat/lon: -->
-                                                <input type="hidden" class="gllpLatitude" value="{{ $motel->get('latlng')[0] }}"/>
+                                                <input type="hidden" class="gllpLatitude"
+                                                       value="{{ $motel->get('lat') }}"/>
                                                 <!-- / -->
-                                                <input type="hidden" class="gllpLongitude" value="{{ $motel->get('latlng')[1] }}"/>
+                                                <input type="hidden" class="gllpLongitude"
+                                                       value="{{ $motel->get('lng') }}"/>
                                                 <!-- zoom: --> <input type="hidden" class="gllpZoom" value="15"/>
                                                 <input type="hidden" class="gllpUpdateButton" value="update map">
                                             </fieldset>

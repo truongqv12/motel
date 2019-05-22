@@ -30,7 +30,7 @@ class MotelRoomTransformer extends TransformerAbstract
         }
 
         $images = json_decode($item->images, 1);
-
+        $latlng = json_decode($item->latlng, 1);
         return [
             'id'          => (int)$item->id,
             'title'       => $item->title,
@@ -44,7 +44,8 @@ class MotelRoomTransformer extends TransformerAbstract
             'avatar'      => img_motel_link(Arr::first($images)),
             'images'      => $images,
             'amenities'   => json_decode(base64_decode($item->amenities), 1),
-            'latlng'      => json_decode($item->latlng, 1),
+            'lat'         => $latlng[0],
+            'lng'         => $latlng[1],
             'status'      => $item->status,
             'category_id' => $item->category_id,
             'total_view'  => $item->total_view,

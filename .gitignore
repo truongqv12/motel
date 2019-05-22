@@ -11,3 +11,4 @@ npm-debug.log
 yarn-error.log
 .gitmodules
 .idea/
+composer.lock

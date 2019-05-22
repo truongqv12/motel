@@ -1,8 +1,7 @@
 $(document).ready(function (listener) {
-    // var listMarker = JSON.parse(document.getElementById('data').innerHTML);
-    // console.log(listMarker);
-    var icon_agency = '/assets/v2/images/icons/agency.png';
-    var latLngCenter = new google.maps.LatLng(21.071353178402816, 105.78994989913326);
+    var listMarker = $('#data-motel').data('motel');
+    var icon_agency = '/assets/images/icons/gps.png';
+    var latLngCenter = new google.maps.LatLng(21.0282852, 105.79533459999993);
     var mapDiv = document.getElementById('gmap');
     var map, current_location;
     var service = new google.maps.DistanceMatrixService();
@@ -10,7 +9,7 @@ $(document).ready(function (listener) {
     mapDiv.style.width = '100%';
     mapDiv.style.height = '100%';
     var mapOptions = {
-        zoom: 7,
+        zoom: 14,
         center: latLngCenter,
         styles: [
             {elementType: 'labels.text.fill', stylers: [{color: '#6d8798'}]},
@@ -66,21 +65,76 @@ $(document).ready(function (listener) {
         // map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlBox);
 
         // tạo marker
-        // listMarker.forEach(function (item) {
-        //     createMarker(item);
-        // });
-        // createClusterer(marker_created);
+        listMarker.forEach(function (item) {
+            createMarker(item);
+        });
+        createClusterer(marker_created);
+        var searchBox = new google.maps.places.SearchBox(document.getElementById('search_address'));
+        var markers = [];
+        google.maps.event.addListener(searchBox, 'places_changed', function () {
+            var places = searchBox.getPlaces();
+
+            if (places.length === 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            markers = [];
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
 
         // tạo marker
         function createMarker(item) {
             var pos = new google.maps.LatLng(item.lat, item.lng);
+
             var contentString = '<div class="container_infobox">' +
-                '<h3 class="title text-center">' + item.name + '</h3>' +
+                '<h3 class="title text-center">' + item.title + '</h3>' +
+                '<div class="" style="width: 350px; margin: auto">' +
+                '<img class="img-fit" src="' + item.avatar + '">' +
+                '</div>' +
                 '<p><strong>Địa chỉ: </strong> ' + item.address + '</p>' +
-                '<p><strong>Website: </strong> ' + '<a href="' + item.website + '">' + item.website + '</a>' + '</p>' +
+                '<a target="_blank" href="' + item.url + '" id="" class="btn btn_search btn-lg btn-block text-white">' +
+                'Xem chi tiết' +
+                '</a>' +
+                '<div class="link">' +
                 '<a target="_blank" href="https://www.google.com/maps/search/?api=1&query=' + item.lat + ',' + item.lng + '">' +
                 '<span> View on Google Maps </span> ' +
                 '</a>' +
+                '</div>' +
                 '</div>';
 
 
@@ -93,9 +147,6 @@ $(document).ready(function (listener) {
             marker.set("id", item.id);
 
             marker.addListener('click', function () {
-                // $('.container_infobox').fadeOut('300');
-
-                // activeAgencyList(marker.id)
                 map.setZoom(18);
                 new google.maps.event.trigger(map, 'click');
                 marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -155,13 +206,6 @@ $(document).ready(function (listener) {
 
         function geolocate() {
             if (navigator.geolocation) {
-                // current_location.setMap(null);
-                // current_location = new google.maps.Marker({
-                //     // icon: icon_my_location,
-                //     animation: google.maps.Animation.DROP,
-                //     map: map,
-                //     draggable: true,
-                // });
 
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
@@ -216,104 +260,9 @@ $(document).ready(function (listener) {
             new google.maps.event.trigger(marker_created[key - 1], 'click');
         }
 
-        // currentLocation();
-        // $('#agc_city').change(function () {
-        //     var id = $(this).val();
-        //     var longitude = $(this).find(':selected').attr('data-longitude')
-        //     var latitude = $(this).find(':selected').attr('data-latitude')
-        //     var latLng = new google.maps.LatLng(latitude, longitude);
-        //     ajaxLoadAgency(id);
-        //     map.setZoom(12);
-        //     map.setCenter(latLng);
-        // });
-
-        function ajaxLoadAgency(city_id, district_id = 0) {
-            $.ajax({
-                type: 'GET',
-                url: '/ajax/load-agency',
-                data: {
-                    city_id: city_id,
-                    district_id: district_id,
-                },
-                success: function (response) {
-                    $('#agency_box').html(response);
-                    $('#agc_listing').select2();
-                    select_agency();
-                }
-            });
-        }
-
-        //chọn đại lý
-        function select_agency() {
-            $('#agc_listing').change(function () {
-                var id = $(this).val();
-                var marker = marker_created.find(function(e) {
-                    return e.id == id;
-                });
-                new google.maps.event.trigger(marker, 'click');
-            });
-        }
-
-        // $('.agency_info_name').click(function (e) {
-        //     e.preventDefault();
-        //     var id = $(this).data('id');
-        //     $('html,body').animate({scrollTop: $("#control_box").offset().top}, 'slow');
-        //     var marker = marker_created.find(function(e) {
-        //         return e.id == id;
-        //     });
-        //     new google.maps.event.trigger(marker, 'click');
-        // })
-
-        // select_agency();
     }
 
-
     initMap()
-
-    // var city_id = $('#agc_city').val();
-    // ajaxLoadDistrict(city_id);
-
-
-    //chọn đại lý
-    // $('.select_agency').click(function (e) {
-    //     e.preventDefault();
-    //     $('.select_agency').removeClass('active');
-    //     $(this).addClass('active');
-    //     var id = $(this).data('id');
-    //     map.setZoom(14);
-    //     new google.maps.event.trigger(marker_created[id - 1], 'click');
-    // })
-    //
-    // function activeAgencyList(id) {
-    //     $('.select_agency').removeClass('active');
-    //     $('.select_agency_' + id).addClass('active');
-    // }
-
-    // initMap();
-
-    // function ajaxLoadDistrict(city_id) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '/ajax/load-district',
-    //         data: {
-    //             city_id: city_id,
-    //         },
-    //         success: function (response) {
-    //             $('.load_district_select').html(response);
-    //             var district_id = $("#agc_district option:selected").val();
-    //             districtChange();
-    //             ajaxLoadAgency(city_id, district_id)
-    //         }
-    //     });
-    // }
-
-    // function districtChange() {
-    //     $('#agc_district').change(function () {
-    //         var city_id = $('#agc_city').val();
-    //         var district_id = $(this).val();
-    //         ajaxLoadAgency(city_id, district_id);
-    //     });
-    // }
 
 });
 

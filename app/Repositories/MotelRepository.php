@@ -14,18 +14,11 @@ use App\Transformers\MotelRoomTransformer;
 
 class MotelRepository implements MotelInterface
 {
-    public function all($per_page = 20)
+    public function all()
     {
-        $motels = MotelRoom::where('status', '1')->paginate($per_page);
-        return (isset($motels)) ? $motels : false;
-    }
-
-    public function allByCat($cat_id, $per_page = 20)
-    {
-        $motels = MotelRoom::where('status', '1')
-            ->where('category_id', $cat_id)
-            ->paginate($per_page);
-        return $motels ?: false;
+        $motels = MotelRoom::where('status', '1')->get();
+        $motels = transformer_collection($motels, new MotelRoomTransformer());
+        return ($motels) ? collect_recursive($motels) : false;
     }
 
 //    public

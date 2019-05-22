@@ -11,7 +11,7 @@ namespace App\Repositories;
 
 interface MotelInterface
 {
-    public function all($per_page = 20);
+    public function all();
 
     public function newMotel($limit = 10);
 

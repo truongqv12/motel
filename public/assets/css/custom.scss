@@ -1868,7 +1868,16 @@ $height_to_bar: 40px;
   width: 100%;
   height: 500px;
 }
-
+.container_infobox {
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .link {
+    margin-top: 10px;
+  }
+}
 .contact_content {
   padding-bottom: 30px;
   .fancy-title.title-border-color {
@@ -2621,6 +2630,25 @@ $height_to_bar: 40px;
       .btn_search {
         font-size: 14px;
         font-weight: 400;
+      }
+    }
+  }
+}
+
+.motels_map {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  .control_box {
+    width: 500px;
+    .form-control {
+      border-radius: 0;
+      border-color: #202326;
+      margin-bottom: 15px;
+      &:focus, &:hover, &:active {
+        color: #000;
+        background-color: #fff;
+        border: 1px solid #202326;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
     }
   }

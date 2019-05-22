@@ -75,18 +75,22 @@ function validateLoginForm(form_id) {
 
     var form = $('#' + form_id);
     var err = '';
-    var username = form.find('.login-form-username');
     var password = form.find('.login-form-password');
+    var email = form.find('.login-form-email');
 
-    if (username.val().length === 0) {
-        err += '<p>* Tên đăng nhập không được để trống \n</p>';
-        username.addClass('error');
-    } else if (username.val().length < 2) {
-        err += '<p>* Tên đăng nhập quá ngắn \n</p>';
-        username.addClass('error');
+    if (email.val().length === 0) {
+        err += '<p>* Email không được trống \n</p>';
+        email.addClass('error');
     } else {
-        username.removeClass('error');
+        var regular_email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!regular_email.test(email.val())) {
+            err += '<p>* Email không đúng</p>';
+            email.addClass('error');
+        } else {
+            email.removeClass('error');
+        }
     }
+
     if (password.val().length === 0) {
         err += '<p>* Mật khẩu không được để trống \n</p>';
         password.addClass('error');
