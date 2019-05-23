@@ -118,6 +118,7 @@ if (!function_exists('get_image')) {
     function get_image($path)
     {
         $filename = basename($path);
+        dd($filename);
         if (!file_exists('upload/motel')) {
             mkdir('upload/motel', 666, true);
         }
