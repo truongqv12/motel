@@ -118,12 +118,12 @@ if (!function_exists('get_image')) {
     function get_image($path)
     {
         $filename = basename($path);
-        dd($filename);
         if (!file_exists('upload/motel')) {
             mkdir('upload/motel', 666, true);
         }
         \Intervention\Image\Facades\Image::make($path)->encode('jpg')
             ->save(public_path('upload/motel/' . $filename));
+        dd(public_path());
         return $filename;
     }
 }
