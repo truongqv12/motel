@@ -85,7 +85,7 @@ class CrawlController extends Controller
         if (is_numeric($people)) {
             if (!empty($data['detail_img']) && count($data['detail_img']) > 0) {
                 foreach ($data['detail_img'] as $item) {
-                    $arr_images[] = get_image($item);
+                    $arr_images[] = get_image($item, '/upload/motel/');
                 }
             } else {
                 $arr_images[] = "no_img_room.png";

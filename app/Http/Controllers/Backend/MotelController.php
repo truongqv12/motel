@@ -11,9 +11,9 @@ class MotelController extends Controller
 
     public function index()
     {
-        $motels = MotelRoom::with('category')->paginate(10);
+        $motels  = MotelRoom::with('category')->paginate(10);
         $columns = [
-            'ID', 'Tiêu đề', 'Danh mục', 'Giá phòng', 'Trạng thái' ,'Hành động'
+            'ID', 'Tiêu đề', 'Danh mục', 'Giá phòng', 'Trạng thái', 'Hành động'
         ];
         return view('backend.motel.index', compact('motels', 'columns'));
     }
@@ -46,6 +46,22 @@ class MotelController extends Controller
 
     public function destroy($id)
     {
-        //
+        if (auth('admin')->user()->delete != 1) {
+            return redirect()->route('administration.index')->with('error', 'Không có quyền truy cập');
+        }
+        $motel  = MotelRoom::findOrFail($id);
+        $images = json_decode($motel->images, 1);
+
+        if ($motel->delete()) {
+            foreach ($images as $item) {
+                $image_path = public_path() . "/upload/motel/" . $item;
+                if (\File::exists($image_path)) {
+                    \File::delete($image_path);
+                }
+            }
+            return redirect()->back()->with('success', 'Xóa thành công');
+        } else {
+            return redirect()->back()->with('error', 'Xóa không thành công');
+        }
     }
 }

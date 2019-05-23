@@ -115,18 +115,40 @@ if (!function_exists('img_motel_link')) {
 }
 
 if (!function_exists('get_image')) {
-    function get_image($path)
+//    function get_image($path)
+//    {
+//        $filename = basename($path);
+//        if (!file_exists('upload/motel')) {
+//            mkdir('upload/motel', 666, true);
+//        }
+//        dump(1);
+//        \Image::make($path)->encode('jpg')
+//            ->save(public_path('upload/motel/' . $filename));
+//
+//        dd(public_path());
+//        return $filename;
+//    }
+    function get_image($url, $pathFile)
     {
-        $filename = basename($path);
-        if (!file_exists('upload/motel')) {
-            mkdir('upload/motel', 666, true);
-        }
-        dump(1);
-        \Image::make($path)->encode('jpg')
-            ->save(public_path('upload/motel/' . $filename));
 
-        dd(public_path());
+        $filename = basename($url);
+        $path     = $pathFile . '/' . $filename;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/6.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.7) Gecko/20050414 Firefox/1.0.3");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $fp = fopen($_SERVER['DOCUMENT_ROOT'] . $path, 'w+6');
+        fwrite($fp, $result);
+        fclose($fp);
+
         return $filename;
+
     }
 }
 
