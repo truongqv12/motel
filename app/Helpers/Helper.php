@@ -121,8 +121,10 @@ if (!function_exists('get_image')) {
         if (!file_exists('upload/motel')) {
             mkdir('upload/motel', 666, true);
         }
+        dump(1);
         \Image::make($path)->encode('jpg')
             ->save(public_path('upload/motel/' . $filename));
+
         dd(public_path());
         return $filename;
     }
