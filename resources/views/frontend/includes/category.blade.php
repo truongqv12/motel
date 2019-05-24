@@ -1,6 +1,12 @@
 @extends('frontend.layout.master')
 
 @section('content')
+    <div class="container clearfix">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item active"><a href="">{{ $category->get('name') }}</a></li>
+        </ol>
+    </div>
     <div class="show_motel">
         <div class="container">
             <div class="title fancy-title title-dotted-border title-center">
@@ -12,8 +18,10 @@
                         <!-- Post Article -->
                         <article class="ipost room-item">
                             <div class="entry-image mb-3">
-                                <a href="{{$item->get('url')}}"><img class="img-fit" src="{{$item->get('avatar')}}"
-                                                                     alt="{{$item->get('title')}}"></a>
+                                <a href="{{$item->get('url')}}">
+                                    <img class="img-fit" src="{{$item->get('avatar')}}"
+                                         onerror="this.onerror=null; this.src='/assets/images/no_img_room.png'"
+                                         alt="{{$item->get('title')}}"></a>
                             </div>
                             <div class="entry-title">
                                 <h3><a href="{{$item->get('url')}}">{{$item->get('title')}}</a></h3>

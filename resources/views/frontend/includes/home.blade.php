@@ -109,6 +109,7 @@
                                 <div class="entry-image mb-3">
                                     <a href="{{$item->get('url')}}">
                                         <img class="img-fit" src="{{$item->get('avatar')}}"
+                                             onerror="this.onerror=null; this.src='/assets/images/no_img_room.png'"
                                              alt="{{$item->get('title')}}"></a>
                                 </div>
                                 <div class="entry-title">

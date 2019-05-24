@@ -31,7 +31,7 @@ class MotelRoomController extends FrontEndController
 
         \Meta::set($meta);
 
-        return view('frontend.includes.category', compact('motels'));
+        return view('frontend.includes.category', compact('motels','category'));
     }
 
     public function detail($cat_id, $rewrite)

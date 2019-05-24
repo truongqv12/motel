@@ -16,7 +16,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9 col-md-12">
                 <div class="motel-detail">
                     <div class="room-detail">
                         <div class="title">
@@ -32,7 +32,7 @@
                             <!-- Nhà trọ, Phòng trọ -->
                             <div class="main-info">
                                 <div class="row">
-                                    <div class="col-md-8 left-info norightpadding">
+                                    <div class="col-md-8 left-info">
                                         <table class="table table-bordered nomargin">
                                             <tbody>
                                             <tr>
@@ -66,7 +66,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-md-4 info-contact noleftpadding">
+                                    <div class="col-md-4 info-contact">
                                         <div class="" style="padding: 15px 20px">
                                             <div class="contact-label">
                                                 <a href=""><span class="icon-info"></span>Thông tin liên hệ</a>
@@ -83,7 +83,7 @@
                                             <div class="info-phone">
                                                 <a href=""><span class="icon-phone"></span>{{$motel->get('phone')}}</a>
                                             </div>
-                                            <div class="info-feedback d-flex justify-content-between align-items-center">
+                                            <div class="info-feedback d-lg-flex d-md-block justify-content-between align-items-center">
                                                 <button class="btn btn_search">Phản hồi tình trạng</button>
                                                 <button class="btn btn_search">Lưu tin</button>
                                             </div>
@@ -97,11 +97,12 @@
                                 </div>
                                 <div class="row">
                                     @foreach($motel->get('images') as $item)
-                                        <div class="col-md-3 norightpadding mb-3">
+                                        <div class="col-md-3 mb-3">
                                             <div class="img-item">
                                                 <a href="{{img_motel_link($item)}}" class="fancybox"
                                                    data-fancybox="img_motel">
                                                     <img class="img-fit" src="{{img_motel_link($item)}}"
+                                                         onerror="this.onerror=null; this.src='/assets/images/no_img_room.png'"
                                                          alt="{{$motel->get('slug')}}">
                                                 </a>
                                             </div>
