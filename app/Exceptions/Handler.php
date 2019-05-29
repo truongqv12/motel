@@ -58,6 +58,10 @@ class Handler extends ExceptionHandler
             if ($request->is('admin/*')) {
                 return response()->view('backend.layout.404');
             }
+            // bị lỗi ở fronrend
+            if ($request->is('*')) {
+                return response()->view('frontend.layout.404');
+            }
         }
 
         if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
@@ -65,12 +69,18 @@ class Handler extends ExceptionHandler
             if ($request->is('admin/*')) {
                 return response()->view('backend.layout.404');
             }
+            if ($request->is('*')) {
+                return response()->view('frontend.layout.404');
+            }
         }
         // báo lỗi không tồn tại phương thức
         if ($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
             // bị lỗi ở admin
             if ($request->is('admin/*')) {
                 return response()->view('backend.layout.404');
+            }
+            if ($request->is('*')) {
+                return response()->view('frontend.layout.404');
             }
         }
         return parent::render($request, $exception);
