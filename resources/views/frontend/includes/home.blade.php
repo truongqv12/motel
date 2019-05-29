@@ -40,7 +40,7 @@
                                     <div class="radio_inline_item nopadding">
                                         <input type="radio" class="radio-style" name="motel_type" id="payment_type_1"
                                                value="1">
-                                        <label for="payment_type_1" class="radio-style-2-label radio-small">Phòng trọ,
+                                        <label for="payment_type_1" class="radio-style-2-label radio-small text-white">Phòng trọ,
                                             nhà trọ </label>
                                     </div>
                                 </div>
