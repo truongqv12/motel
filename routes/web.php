@@ -27,8 +27,14 @@ Route::group([
     Route::get('/load-district', 'Ajax\CityAjaxController@getDistrictByCity')->name('ajax.district');
 });
 
-//Route::get('/login', 'HomeController@showLoginForm')->name('login');
+Route::get('/login', 'HomeController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name('login.post');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/signup', 'HomeController@signupForm')->name('signup');
-Route::post('/signup', 'HomeController@creat')->name('signup');
+Route::post('/signup', 'Auth\RegisterController@register')->name('signup.post');
+
+Route::group([
+    'middleware' => ['auth']
+], function () {
+    Route::get('/trang-ca-nhan', 'ProfileController@index')->name('profile');
+});

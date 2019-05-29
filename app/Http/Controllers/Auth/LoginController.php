@@ -42,7 +42,7 @@ class LoginController extends Controller
         if ($this->guard()->attempt(['email' => $rq->email, 'password' => $rq->password], true)) {
             return redirect()->route('index');
         } else {
-            return redirect()->route('index')->with('error_login', 'Tài khoản hoặc mật khẩu không đúng');
+            return redirect()->route('login')->with('error_login', 'Tài khoản hoặc mật khẩu không đúng');
         }
     }
 

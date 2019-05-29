@@ -16,15 +16,15 @@
                     {{ csrf_field() }}
 
                     <div class="help-block show_err">
-                        @if($errors->has('email'))
-                            * {!! $errors->first('email') !!}
-                        @endif
-                        @if($errors->has('password'))
-                            * {!! $errors->first('password') !!}
-                        @endif
-                        @if(Session::has('error_login'))
-                            * {!! Session::get('error_login') !!}
-                        @endif
+                        {{--@if($errors->has('email'))--}}
+                            {{--* {!! $errors->first('email') !!}--}}
+                        {{--@endif--}}
+                        {{--@if($errors->has('password'))--}}
+                            {{--* {!! $errors->first('password') !!}--}}
+                        {{--@endif--}}
+                        {{--@if(Session::has('error_login'))--}}
+                            {{--* {!! Session::get('error_login') !!}--}}
+                        {{--@endif--}}
                     </div>
 
                     <div class="col_full">
@@ -46,11 +46,11 @@
                         </button>
                     </div>
                     <div class="col_full nobottommargin">
-                        <a href="<?= url('lost_password') ?>" class="">Quên mật khẩu</a>
+                        <a href="" class="">Quên mật khẩu</a>
                     </div>
                     <div class="line line-sm"></div>
                     <div class="col_full nobottommargin">
-                        <a href="<?= url('register') ?>"
+                        <a href="{{route('signup')}}"
                            class="button button-rounded button-purple text-uppercase">Tạo tài khoản</a>
                     </div>
                 </form>
@@ -73,10 +73,10 @@
                     @if(Auth::check())
                         <li>
                             <a href="" class="select_user_toggle"><span class="icon-user4"></span>
-                                <span class="t200 text-lowercase">{{ Auth::user()->name }}</span></a>
+                                <span class="t200">{{ Auth::user()->name }}</span></a>
                             <ul class="select_user_box">
                                 <li>
-                                    <a href="">
+                                    <a href="{{route('profile')}}">
                                         <i class="icon-user"></i> Tài khoản
                                     </a>
                                 </li>

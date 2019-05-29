@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d491ccb3c93c9d7345d027b874e46e04",
+    "content-hash": "696154b6849a550349092e82f0e3d414",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1005,6 +1005,62 @@
             "time": "2019-05-10T02:16:43+00:00"
         },
         {
+            "name": "mlocati/ip-lib",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mlocati/ip-lib.git",
+                "reference": "5baab69fbf39256ea0014d80165725c3257c663b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mlocati/ip-lib/zipball/5baab69fbf39256ea0014d80165725c3257c663b",
+                "reference": "5baab69fbf39256ea0014d80165725c3257c663b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "ext-pdo_sqlite": "*",
+                "phpunit/dbunit": "^1.4 || ^2 || ^3 || ^4",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IPLib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michele Locati",
+                    "email": "mlocati@gmail.com",
+                    "homepage": "https://github.com/mlocati",
+                    "role": "Author"
+                }
+            ],
+            "description": "Handle IPv4, IPv6 addresses and ranges",
+            "homepage": "https://github.com/mlocati/ip-lib",
+            "keywords": [
+                "IP",
+                "address",
+                "addresses",
+                "ipv4",
+                "ipv6",
+                "matching",
+                "network",
+                "networking",
+                "range",
+                "subnet"
+            ],
+            "time": "2019-02-25T14:12:56+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -1348,6 +1404,110 @@
                 "type"
             ],
             "time": "2015-07-25T16:39:46+00:00"
+        },
+        {
+            "name": "phpviet/laravel-validation",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpviet/laravel-validation.git",
+                "reference": "300b9f875e3aa1e642b7f3f38ace31ad4f670868"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpviet/laravel-validation/zipball/300b9f875e3aa1e642b7f3f38ace31ad4f670868",
+                "reference": "300b9f875e3aa1e642b7f3f38ace31ad4f670868",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.7",
+                "php": "^7.1",
+                "phpviet/validation": "^1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "PHPViet\\Laravel\\Validation\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPViet\\Laravel\\Validation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vuong Xuong Minh",
+                    "email": "vuongxuongminh@gmail.com"
+                }
+            ],
+            "description": "Laravel validation hổ trợ kiểm tra dữ liệu đặc thù trong nước",
+            "homepage": "https://github.com/phpviet/laravel-validation",
+            "keywords": [
+                "laravel-validation",
+                "phpviet"
+            ],
+            "time": "2019-05-25T17:04:06+00:00"
+        },
+        {
+            "name": "phpviet/validation",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpviet/validation.git",
+                "reference": "e4f8e4cef417023084285b3d04b2be42871fb7ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpviet/validation/zipball/e4f8e4cef417023084285b3d04b2be42871fb7ce",
+                "reference": "e4f8e4cef417023084285b3d04b2be42871fb7ce",
+                "shasum": ""
+            },
+            "require": {
+                "mlocati/ip-lib": "^1.7",
+                "php": "^7.1",
+                "respect/validation": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPViet\\Validation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vuong Xuong Minh",
+                    "email": "vuongxuongminh@gmail.com"
+                }
+            ],
+            "description": "Thư viện hổ trợ kiểm tra dữ liệu đặc thù trong nước",
+            "homepage": "https://github.com/phpviet/validation",
+            "keywords": [
+                "phpviet",
+                "validation"
+            ],
+            "time": "2019-05-23T17:13:29+00:00"
         },
         {
             "name": "psr/container",
@@ -1738,6 +1898,69 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "respect/validation",
+            "version": "1.1.31",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Respect/Validation.git",
+                "reference": "45d109fc830644fecc1145200d6351ce4f2769d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/45d109fc830644fecc1145200d6351ce4f2769d0",
+                "reference": "45d109fc830644fecc1145200d6351ce4f2769d0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/polyfill-mbstring": "^1.2"
+            },
+            "require-dev": {
+                "egulias/email-validator": "~1.2 || ~2.1",
+                "mikey179/vfsstream": "^1.5",
+                "phpunit/phpunit": "~4.0 || ~5.0",
+                "symfony/validator": "~2.6.9",
+                "zendframework/zend-validator": "~2.3"
+            },
+            "suggest": {
+                "egulias/email-validator": "Strict (RFC compliant) email validation",
+                "ext-bcmath": "Arbitrary Precision Mathematics",
+                "ext-mbstring": "Multibyte String Functions",
+                "friendsofphp/php-cs-fixer": "Fix PSR2 and other coding style issues",
+                "symfony/validator": "Use Symfony validator through Respect\\Validation",
+                "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Respect\\Validation\\": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Respect/Validation Contributors",
+                    "homepage": "https://github.com/Respect/Validation/graphs/contributors"
+                }
+            ],
+            "description": "The most awesome validation engine ever created for PHP",
+            "homepage": "http://respect.github.io/Validation/",
+            "keywords": [
+                "respect",
+                "validation",
+                "validator"
+            ],
+            "time": "2019-05-28T06:10:06+00:00"
         },
         {
             "name": "ryannielson/meta",

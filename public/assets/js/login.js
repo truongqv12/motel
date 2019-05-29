@@ -4,21 +4,28 @@ function validateRegisterForm(form_id) {
     var form = $('#' + form_id);
     var err = '';
     var username = form.find('.login-form-username');
+    var phone = form.find('.login-form-phone');
     var email = form.find('.login-form-email');
     var password = form.find('.login-form-password');
     var password_confirm = form.find('.login-form-password-confirm');
 
     if (username.val().length === 0) {
-        err += '<p>* Tên đăng nhập không được trống</p>';
-        username.addClass('error');
-    } else if (username.val().length < 2) {
-        err += '<p>* Tên đăng nhập quá ngắn</p>';
-        username.addClass('error');
-    } else if (validate_character(username.val())) {
-        err += '<p>* Tên đăng nhập không được có dấu</p>';
+        err += '<p>* Họ và tên không được trống</p>';
         username.addClass('error');
     } else {
         username.removeClass('error');
+    }
+
+    var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+
+    if (phone.val().length === 0) {
+        err += '<p>* Số điện thoại không được trống</p>';
+        phone.addClass('error');
+    } else if (vnf_regex.test(phone.val()) === false) {
+        err += '<p>* Số điện thoại của bạn không đúng định dạng</p>';
+        phone.addClass('error');
+    } else {
+        phone.removeClass('error');
     }
 
     if (email.val().length === 0) {
@@ -44,7 +51,7 @@ function validateRegisterForm(form_id) {
         password.removeClass('error');
     }
 
-    if (password_confirm.val() !== password.val() || password_confirm.val().length === 0 ) {
+    if (password_confirm.val() !== password.val() || password_confirm.val().length === 0) {
         err += '<p>* Nhập lại mật khẩu không đúng</p>';
         password_confirm.addClass('error');
     } else {

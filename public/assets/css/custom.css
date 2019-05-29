@@ -1174,7 +1174,7 @@ body {
 .radio_inline_item {
   font-weight: 400;
   font-size: 14px;
-  color: #ffffff;
+  color: #555555;
   display: flex;
   cursor: default;
   padding: 16px 12px;
@@ -1183,7 +1183,7 @@ body {
 .radio_inline_item .radio-style-2-label {
   text-transform: inherit;
   font-size: 14px;
-  color: #ffffff;
+  color: #555555;
 }
 
 .radio_inline_item .radio-style:checked + .radio-style-2-label:before {

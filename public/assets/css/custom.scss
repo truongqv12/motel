@@ -1085,7 +1085,7 @@ $height_to_bar: 40px;
   &_item {
     font-weight: 400;
     font-size: 14px;
-    color: #ffffff;
+    color: #555555;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -1096,7 +1096,7 @@ $height_to_bar: 40px;
     .radio-style-2-label {
       text-transform: inherit;
       font-size: 14px;
-      color: #ffffff;
+      color: #555555;
     }
     .radio-style:checked + .radio-style-2-label:before {
       background-color: $theme-color;
@@ -2022,6 +2022,7 @@ $height_to_bar: 40px;
     }
   }
 }
+
 @media (max-width: 390.98px) {
   .asks-first {
     padding: 20px 20px;

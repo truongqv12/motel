@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -28,7 +26,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -43,30 +41,36 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'phone'    => 'min:9| max:11',
+        ], [
+            'name.required'      => 'Họ tên không được để trống',
+            'email.required'     => 'Email không được để trống',
+            'email.email'        => 'Email không đúng',
+            'email.unique'       => 'Email đã tồn tại trên hệ thông',
+            'password.required'  => 'Bạn chưa nhập mật khẩu',
+            'password.confirmed' => 'Mật khẩu không khớp',
+            'password.min'       => 'Mật khẩu quá ngắn',
+            'phone.min'          => 'Số điện thoại không đúng',
+            'phone.max'          => 'Số điện thoại không đúng',
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        return \App\Models\User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
+            'password' => $data['password'],
+            'phone'    => $data['phone'],
         ]);
     }
 }
