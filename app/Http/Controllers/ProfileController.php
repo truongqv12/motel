@@ -11,4 +11,8 @@ class ProfileController extends FrontEndController
         $profile = Auth::user();
         return view('frontend.includes.profile_setting',compact('profile'));
     }
+    public function motelPost() {
+        $motels = $this->motelRepository->myMotel();
+        return view('frontend.includes.profile_my_motel',compact('motels'));
+    }
 }

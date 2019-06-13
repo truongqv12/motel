@@ -34,6 +34,10 @@ $(window).on('load', function () {
     //     }
     // })
 
+    $(".select2").select2({
+        theme: "bootstrap",
+    });
+
     var city_select2 = $("#cbCity").select2({
         theme: "bootstrap",
         placeholder: 'Chọn Thành Phố...',
@@ -46,12 +50,39 @@ $(window).on('load', function () {
         disabled: true
     });
 
+    $("#cbWard").select2({
+        theme: "bootstrap",
+        placeholder: 'Chọn xã phường, đường....',
+        disabled: true
+    });
+
 
     city_select2.change(function () {
         const id = $(this).val();
+        $("#cbWard").select2({
+            disabled: true
+        });
         ajaxLoadDistrict(id);
     });
+
 });
+
+function ajaxLoadWard(city_id) {
+    $.ajax({
+        type: 'GET',
+        url: '/ajax/load-ward',
+        data: {
+            city_id: city_id,
+        },
+        success: function (response) {
+            $('#loadWard').html(response);
+            $("#cbWard").select2({
+                disabled: false,
+            });
+            $('#loadWard').addClass('disableFalse');
+        }
+    });
+}
 
 function ajaxLoadDistrict(city_id) {
     $.ajax({
@@ -64,6 +95,9 @@ function ajaxLoadDistrict(city_id) {
             $('#loadDistrict').html(response);
             $("#cbDistrict").select2({
                 disabled: false,
+            }).change(function () {
+                const id = $(this).val();
+                ajaxLoadWard(id);
             });
             $('#loadDistrict').addClass('disableFalse');
         }

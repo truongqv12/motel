@@ -10,9 +10,19 @@
             <div id="profile_nav" class="sidebar nomargin profile_nav clearfix">
                 <ul class="">
                     <li class="">
-                        <a href="<?= url('profile') ?>"
+                        <a href="<?= route('profile') ?>"
                            class="<?= (url()->current() == route('profile')) ? 'active' : '' ?>">
                             <i class="icon-user"></i> Tổng quan</a>
+                    </li>
+                    <li class="">
+                        <a href="<?= route('profile.motel_post') ?>"
+                           class="<?= (url()->current() == route('profile.motel_post')) ? 'active' : '' ?>">
+                            <i class="icon-home"></i> Tin đã đăng</a>
+                    </li>
+                    <li class="">
+                        <a href=""
+                           class="">
+                            <i class="icon-book"></i> Tin đã lưu</a>
                     </li>
                 </ul>
             </div>

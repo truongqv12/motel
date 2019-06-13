@@ -17,13 +17,13 @@
 
                     <div class="help-block show_err">
                         {{--@if($errors->has('email'))--}}
-                            {{--* {!! $errors->first('email') !!}--}}
+                        {{--* {!! $errors->first('email') !!}--}}
                         {{--@endif--}}
                         {{--@if($errors->has('password'))--}}
-                            {{--* {!! $errors->first('password') !!}--}}
+                        {{--* {!! $errors->first('password') !!}--}}
                         {{--@endif--}}
                         {{--@if(Session::has('error_login'))--}}
-                            {{--* {!! Session::get('error_login') !!}--}}
+                        {{--* {!! Session::get('error_login') !!}--}}
                         {{--@endif--}}
                     </div>
 
@@ -90,7 +90,6 @@
                     @else
                         <li><a href="" class="side-panel-trigger"><span class="icon-user4"></span></a></li>
                     @endif
-
                 </ul>
             </div><!-- #top-social end -->
 
@@ -153,6 +152,13 @@
                     <li class="mega_menu">
                         <a href="{{route('map.index')}}" class="main_menu_href">
                             <div>Bản đồ</div>
+                        </a>
+                    </li>
+                    <li class="mega_menu">
+                        <a href="{{route('motel_post.view')}}"
+                           class="main_menu_href btn btn-success {{Auth::check() ? '' : 'side-panel-trigger'}}"
+                           id="dangtin">
+                            <div>Đăng tin miễn phí</div>
                         </a>
                     </li>
                 </ul>

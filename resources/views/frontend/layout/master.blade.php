@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/style.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/swiper.css" type="text/css"/>
-    <link rel="stylesheet" href="/assets/demos/business/business.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/font-icons.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/animate.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/magnific-popup.css" type="text/css"/>
@@ -18,8 +17,9 @@
     <link rel="stylesheet" href="/assets/css/components/ion.rangeslider.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/components/select2.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/fancybox/dist/jquery.fancybox.min.css" type="text/css"/>
-
+    <link rel="stylesheet" href="/assets/icheck/skins/square/green.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/responsive.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/toastr.min.css" type="text/css"/>
 
     <link rel="stylesheet" href="/assets/css/custom.css?v='{{rand(0, 1000)}}" type="text/css"/>
     @yield('style')
@@ -59,6 +59,7 @@
 <script src="/assets/js/components/rangeslider.min.js"></script>
 <script src="/assets/js/components/select2.min.js"></script>
 <script src="/assets/fancybox/dist/jquery.fancybox.min.js"></script>
+<script src="/assets/icheck/icheck.min.js"></script>
 <script src="/assets/js/header.js"></script>
 <script src="/assets/js/home.js"></script>
 <script>

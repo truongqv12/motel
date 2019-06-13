@@ -13,4 +13,10 @@ class CityAjaxController extends AjaxController
         $items   = $this->citiesRepository->allDistrict($city_id);
         return view('/ajax/get_district_by_city', compact('items'));
     }
+    public function getWardByDistrict(Request $rq)
+    {
+        $city_id = $rq->city_id;
+        $items   = $this->citiesRepository->allDistrict($city_id);
+        return view('/ajax/get_ward_by_district', compact('items'));
+    }
 }

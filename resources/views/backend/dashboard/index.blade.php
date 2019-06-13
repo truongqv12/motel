@@ -11,7 +11,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
+            Thống kê
             <small>Trang quản lý</small>
         </h1>
 

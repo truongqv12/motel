@@ -9,7 +9,9 @@
 namespace App\Repositories;
 
 
+use App\Models\Amenities;
 use App\Models\MotelRoom;
+use App\Transformers\AmenitiesTransformer;
 use App\Transformers\MotelRoomTransformer;
 
 class MotelRepository implements MotelInterface
@@ -70,4 +72,17 @@ class MotelRepository implements MotelInterface
         return $motels['data'] ? collect_recursive($motels) : false;
     }
 
+    public function allAmenities()
+    {
+        $items = Amenities::all();
+        $items = transformer_collection($items, new AmenitiesTransformer());
+        return ($items) ? collect_recursive($items) : false;
+    }
+
+    public function myMotel()
+    {
+        $items = MotelRoom::where('use_id', '=', auth()->user()->id)->get();
+        $items = transformer_collection($items, new MotelRoomTransformer());
+        return $items ? collect_recursive($items) : false;
+    }
 }

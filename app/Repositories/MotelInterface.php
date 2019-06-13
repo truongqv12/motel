@@ -20,4 +20,8 @@ interface MotelInterface
     public function getByRewrite($rewrite);
 
     public function search($rq);
+
+    public function allAmenities();
+
+    public function myMotel();
 }

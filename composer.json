@@ -14,7 +14,6 @@
         "intervention/image": "^2.4",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "phpviet/laravel-validation": "^1.0",
         "ryannielson/meta": "^1.1",
         "spatie/laravel-fractal": "^5.5",
         "unisharp/laravel-filemanager": "~1.8"

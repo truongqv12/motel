@@ -19,8 +19,11 @@
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree" data-animation-speed="300">
+            <li class="active">
+                <a href="{{route('admin')}}"><i class="fa fa-dashboard"></i><span>Thống kê</span></a>
+            </li>
             <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa fa-navicon"></i><span>Bài viết</span>
+                <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i><span>Bài viết</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
@@ -34,7 +37,7 @@
             </li>
 
             <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa  fa-book"></i><span>Phòng Trọ</span>
+                <a href="javascript:void(0)"><i class="fa fa-home"></i><span>Phòng Trọ</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
@@ -43,48 +46,17 @@
                     <li><a href="{{route('category.create').'?type=MOTEL'}}">
                             <i class="fa fa-caret-right"></i> Thêm mới danh mục</a></li>
                     <li><a href="{{route('motelroom.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
-                    {{--<li><a href="{{route('motelroom.create')}}"><i class="fa fa-caret-right"></i> Thêm mới</a></li>--}}
+                    <li><a href="//"><i class="fa fa-caret-right"></i> Báo cáo</a></li>
                 </ul>
             </li>
 
             <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa fa-cart-arrow-down"></i><span>Đơn hàng</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('order.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa fa-image"></i><span>Banner</span>
+                <a href="javascript:void(0)"><i class="fa fa-cogs"></i><span>Cài đặt</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('banner.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
                     <li><a href="{{route('banner.create')}}"><i class="fa fa-caret-right"></i> Thêm mới</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa fa-paint-brush"></i><span>Tác giả</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('author.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
-                    <li><a href="{{route('author.create')}}"><i class="fa fa-caret-right"></i> Thêm mới</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="javascript:void(0)"><i class="fa fa-institution"></i><span>Nhà xuất bản</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('publishing_house.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a>
-                    </li>
-                    <li><a href="{{route('publishing_house.create')}}"><i class="fa fa-caret-right"></i> Thêm mới</a>
-                    </li>
                 </ul>
             </li>
 

@@ -21,10 +21,21 @@ Route::get('/tim-kiem', 'MotelRoomController@search')->name('motel.search');
 
 Route::get('/ban-do', 'MapController@index')->name('map.index');
 
+
 Route::group([
     'prefix' => 'ajax',
 ], function () {
     Route::get('/load-district', 'Ajax\CityAjaxController@getDistrictByCity')->name('ajax.district');
+    Route::get('/load-ward', 'Ajax\CityAjaxController@getWardByDistrict')->name('ajax.ward');
+
+    Route::group([
+        'prefix' => 'dropzone',
+    ], function () {
+//        Route::get('/upload','DropzoneUploadController@fileCreate');
+        Route::post('/upload/store', 'DropzoneUploadController@fileStore')->name('ajax.upload.store');
+        Route::post('/delete', 'DropzoneUploadController@fileDestroy')->name('ajax.upload.delete');
+    });
+
 });
 
 Route::get('/login', 'HomeController@showLoginForm')->name('login');
@@ -37,4 +48,8 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::get('/trang-ca-nhan', 'ProfileController@index')->name('profile');
+    Route::get('/tin-da-dang', 'ProfileController@motelPost')->name('profile.motel_post');
+    Route::get('/dang-tin-mien-phi', 'MotelRoomController@showFormPostMotel')->name('motel_post.view');
+    Route::post('/dang-tin-mien-phi', 'MotelRoomController@postMotel')->name('motel_post.post');
+
 });
