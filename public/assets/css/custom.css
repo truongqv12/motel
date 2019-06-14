@@ -1865,6 +1865,22 @@ body {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.form-check {
+  padding: 0;
+}
+
+.form-check-label {
+  font-size: 13px;
+  line-height: 14px;
+  text-transform: inherit;
+  vertical-align: middle;
+}
+
+.form-check-label .icheckbox_square-green,
+.form-check-label .iradio_square-green {
+  margin-right: 10px;
+}
+
 .form-control.error {
   border-color: red;
 }
@@ -1952,6 +1968,16 @@ body {
   border: 2px dashed #0087F7;
   border-radius: 5px;
   background: white;
+}
+
+.modal-dialog {
+  margin-top: 100px;
+}
+
+.report {
+  border: 2px dashed #DD4B39;
+  border-radius: 5px;
+  padding: 5px 20px;
 }
 
 .select2-container--bootstrap .select2-selection {

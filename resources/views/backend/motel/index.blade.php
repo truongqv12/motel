@@ -51,9 +51,23 @@
                                     </td>
                                     <td>
                                         @if(Auth::guard('admin')->user()->edit == 1)
-                                            <a href="{{route('motelroom.edit',['id' => $item->id])}}"
-                                               class="btn btn-action label label-success"><i
-                                                        class="fa fa-pencil"></i></a>
+                                            {{--<a href="{{route('motelroom.edit',['id' => $item->id])}}"--}}
+                                            {{--class="btn btn-action label label-success"><i--}}
+                                            {{--class="fa fa-pencil"></i></a>--}}
+                                            <div class="btn-group">
+                                                <button type="button"
+                                                        class="btn btn-action label label-success dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="{{route('motelroom.active',['id'=>$item->id])}}">
+                                                            <i class="fa fa-check-square-o"></i>Kiểm duyệt</a>
+                                                    </li>
+                                                    <li><a href="{{route('motelroom.unactive',['id'=>$item->id])}}"><i
+                                                                    class="fa fa-eye-slash"></i>Tạm ẩn</a></li>
+                                                </ul>
+                                            </div>
                                         @endif
 
                                         @if(Auth::guard('admin')->user()->delete == 1)

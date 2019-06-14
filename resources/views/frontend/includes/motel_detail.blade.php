@@ -84,8 +84,61 @@
                                                 <a href=""><span class="icon-phone"></span>{{$motel->get('phone')}}</a>
                                             </div>
                                             <div class="info-feedback d-lg-flex d-md-block justify-content-between align-items-center">
-                                                <button class="btn btn_search">Phản hồi tình trạng</button>
-                                                <button class="btn btn_search">Lưu tin</button>
+                                                @if(Auth::check())
+                                                    <button class="btn btn_search" id="report_btn" data-toggle="modal"
+                                                            data-target="#modal_bao_cao">Phản hồi tình trạng
+                                                    </button>
+                                                    <button class="btn btn_search" id="save_btn"
+                                                            onclick="return ajax_save_motel({{$motel->get('id')}})">Lưu
+                                                        tin
+                                                    </button>
+                                                    <!-- modal_bao_cao -->
+                                                    <div class="modal fade" id="modal_bao_cao" tabindex="-1"
+                                                         role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content w-75 m-auto">
+                                                                <div class="modal-body">
+                                                                    <div class="report">
+                                                                        <h4 class="mt-2 mb-2 text-center">BÁO CÁO</h4>
+
+                                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label">
+                                                                                    <input type="radio"
+                                                                                           class="form-check-input"
+                                                                                           name="report" checked
+                                                                                           value="0">Đã
+                                                                                    cho thuê
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label">
+                                                                                    <input type="radio"
+                                                                                           class="form-check-input"
+                                                                                           name="report"
+                                                                                           value="1">Sai
+                                                                                    thông tin
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-center mt-3 mb-2">
+                                                                            <button class="btn btn-danger btn-sm"
+                                                                                    onclick="return ajax_send_report({{$motel->get('id')}})">
+                                                                                Gửi phản hồi
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <button class="btn btn_search side-panel-trigger">Phản hồi tình
+                                                        trạng
+                                                    </button>
+                                                    <button class="btn btn_search side-panel-trigger">Lưu tin</button>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -155,8 +208,8 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('assets/js/jquery-gmaps-latlon-picker.js')}}"></script>
     <script>
+        load_icheck();
         $('.fancybox').fancybox({
             thumbs: {
                 autoStart: true,
@@ -164,9 +217,6 @@
             },
         });
     </script>
-    <script>
-
-
-    </script>
-    <script src="//maps.googleapis.com/maps/api/js?key={{config('map.key')}}&sensor=false"></script>
+    <script src="/assets/js/jquery-gmaps-latlon-picker.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{config('map.key')}}&sensor=false"></script>
 @endsection

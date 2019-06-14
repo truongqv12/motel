@@ -1,16 +1,16 @@
 $(window).on('load', function () {
 
-    var lastScrollTop = 0;
-    $('#header.sticky-on-upscroll').addClass('show-sticky-onscroll'); // Up Scroll
-    window.addEventListener("scroll", function () {
-        var st = $(this).scrollTop();
-        if (st > lastScrollTop) {
-            $('#header.sticky-on-upscroll').removeClass('show-sticky-onscroll'); // Down Scroll
-        } else {
-            $('#header.sticky-on-upscroll').addClass('show-sticky-onscroll'); // Up Scroll
-        }
-        lastScrollTop = st;
-    });
+    // var lastScrollTop = 0;
+    // $('#header.sticky-on-upscroll').addClass('show-sticky-onscroll'); // Up Scroll
+    // window.addEventListener("scroll", function () {
+    //     var st = $(this).scrollTop();
+    //     if (st > lastScrollTop) {
+    //         $('#header.sticky-on-upscroll').removeClass('show-sticky-onscroll'); // Down Scroll
+    //     } else {
+    //         $('#header.sticky-on-upscroll').addClass('show-sticky-onscroll'); // Up Scroll
+    //     }
+    //     lastScrollTop = st;
+    // });
 
     $('.select_location_toggle').off('click').on('click', function (e) {
         $('.select_user_box').removeClass('select_user_box_show');
@@ -139,4 +139,98 @@ function validateLoginForm(form_id) {
         return false;
     }
     return true;
+}
+
+function load_icheck() {
+    $('.form-check-input').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+        increaseArea: '15%' // optional
+    });
+    $('.form-check-input').on('ifChecked', function (event) {
+        $(this).parent().parent().css('color', 'green');
+        $('#field_child_' + $(this).val()).removeClass('hide').addClass('show');
+    });
+    $('.form-check-input').on('ifUnchecked', function (event) {
+        $(this).parent().parent().css('color', '#555');
+        $('#field_child_' + $(this).val()).removeClass('show').addClass('hide');
+    });
+}
+
+function getCsrf() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+function ajax_unsave(id) {
+    $.ajax({
+        url: '/ajax/unsave-motel/' + id,
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': getCsrf()
+        },
+        success: function (data) {
+            if (data.error === 1) {
+                toastr.error(data.message);
+            }
+            else {
+                $('.row_' + id).hide('slow');
+                toastr.success(data.message);
+            }
+        }
+    });
+    return false;
+}
+
+function ajax_save_motel(motel_id) {
+    $.ajax({
+        url: '/ajax/save-motel',
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': getCsrf()
+        },
+        data: {
+            motel_id: motel_id,
+        },
+        success: function (data) {
+            $('#save_btn').attr('disabled', 'disabled');
+            if (data.error === 1) {
+                toastr.error(data.message);
+            }
+            else {
+                toastr.success(data.message);
+            }
+        }
+    });
+    return false;
+}
+
+function ajax_send_report(motel_id) {
+    const report_status = parseInt($('input[name=report]:checked').val());
+    console.log(motel_id);
+    $.ajax({
+        url: '/ajax/report-motel',
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': getCsrf()
+        },
+        data: {
+            motel_id: motel_id,
+            report_status: report_status,
+        },
+        success: function (data) {
+            $('#report_btn').attr('disabled', 'disabled');
+            if (data.error === 1) {
+                $('#modal_bao_cao').modal('hide');
+                toastr.error(data.message);
+            }
+            else {
+                $('#modal_bao_cao').modal('hide');
+                toastr.success(data.message);
+            }
+        }
+    });
+    return false;
 }

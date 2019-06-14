@@ -1,17 +1,5 @@
 $(document).ready(function () {
-    $('.form-check-input').iCheck({
-        checkboxClass: 'icheckbox_square-green',
-        radioClass: 'iradio_square-green',
-        increaseArea: '15%' // optional
-    });
-    $('.form-check-input').on('ifChecked', function (event) {
-        $(this).parent().parent().css('color', 'green');
-        $('#field_child_' + $(this).val()).removeClass('hide').addClass('show');
-    });
-    $('.form-check-input').on('ifUnchecked', function (event) {
-        $(this).parent().parent().css('color', '#DD4B39');
-        $('#field_child_' + $(this).val()).removeClass('show').addClass('hide');
-    });
+    load_icheck();
 
     $('.check_step_1').on('ifChecked', function () {
         $('#step-2').addClass('show');

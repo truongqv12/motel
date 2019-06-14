@@ -11,8 +11,11 @@ namespace App\Repositories;
 
 use App\Models\Amenities;
 use App\Models\MotelRoom;
+use App\Models\Reports;
+use App\Models\UserMotel;
 use App\Transformers\AmenitiesTransformer;
 use App\Transformers\MotelRoomTransformer;
+use App\Transformers\UserMotelTransformer;
 
 class MotelRepository implements MotelInterface
 {
@@ -83,6 +86,13 @@ class MotelRepository implements MotelInterface
     {
         $items = MotelRoom::where('use_id', '=', auth()->user()->id)->get();
         $items = transformer_collection($items, new MotelRoomTransformer());
+        return $items ? collect_recursive($items) : false;
+    }
+
+    public function myMotelSave()
+    {
+        $items = UserMotel::where('user_id', auth()->user()->id)->get();
+        $items = transformer_collection($items, new UserMotelTransformer());
         return $items ? collect_recursive($items) : false;
     }
 }

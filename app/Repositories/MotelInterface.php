@@ -24,4 +24,6 @@ interface MotelInterface
     public function allAmenities();
 
     public function myMotel();
+
+    public function myMotelSave();
 }

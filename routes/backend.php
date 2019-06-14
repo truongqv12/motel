@@ -22,10 +22,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', 'Backend\UserController');
     Route::resource('category', 'Backend\CategoryController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
     Route::resource('posts', 'Backend\PostController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-    Route::resource('author', 'Backend\AuthorController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-    Route::resource('publishing_house', 'Backend\PublishingHouseController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
     Route::resource('motelroom', 'Backend\MotelController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-    Route::resource('banner', 'Backend\BannerController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
-    Route::resource('order', 'Backend\OrderController', ['only' => ['index', 'edit', 'update']]);
-
+    Route::group([
+        'prefix' => 'motelroom',
+    ], function () {
+        Route::get('/active/{id}', 'Backend\MotelController@active')->name('motelroom.active');
+        Route::get('/unactive/{id}', 'Backend\MotelController@unactive')->name('motelroom.unactive');
+    });
 });

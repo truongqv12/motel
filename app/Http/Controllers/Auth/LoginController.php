@@ -38,9 +38,10 @@ class LoginController extends Controller
                 'password.max'      => 'Mật khẩu không được lớn hơn 40 ký tự'
             ]
         );
-
+//        $redirect_link = $rq->redirect_link ?: '/';
+//        dd($redirect_link);
         if ($this->guard()->attempt(['email' => $rq->email, 'password' => $rq->password], true)) {
-            return redirect()->route('index');
+            return redirect()->back();
         } else {
             return redirect()->route('login')->with('error_login', 'Tài khoản hoặc mật khẩu không đúng');
         }

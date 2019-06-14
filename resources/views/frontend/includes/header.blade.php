@@ -14,7 +14,7 @@
                 <form id="login-form-header" class="nobottommargin" action="{{ route('login.post') }}"
                       method="POST" onsubmit="return validateLoginForm('login-form-header')">
                     {{ csrf_field() }}
-
+                    <input type="hidden" name="redirect_link" id="" value="{{url()->current()}}">
                     <div class="help-block show_err">
                         {{--@if($errors->has('email'))--}}
                         {{--* {!! $errors->first('email') !!}--}}
@@ -101,7 +101,7 @@
 
 <!-- Header
 ============================================= -->
-<header id="header" class="transparent-header">
+<header id="header" class="transparent-header no-sticky">
 
     <div id="header-wrap">
 

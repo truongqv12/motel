@@ -20,8 +20,8 @@
                             <i class="icon-home"></i> Tin đã đăng</a>
                     </li>
                     <li class="">
-                        <a href=""
-                           class="">
+                        <a href="{{route('profile.motel_save')}}"
+                           class="<?= (url()->current() == route('profile.motel_save')) ? 'active' : '' ?>">
                             <i class="icon-book"></i> Tin đã lưu</a>
                     </li>
                 </ul>

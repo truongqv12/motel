@@ -15,4 +15,9 @@ class ProfileController extends FrontEndController
         $motels = $this->motelRepository->myMotel();
         return view('frontend.includes.profile_my_motel',compact('motels'));
     }
+
+    public function motelSave() {
+        $items = $this->motelRepository->myMotelSave();
+        return view('frontend.includes.profile_save_motel',compact('items'));
+    }
 }

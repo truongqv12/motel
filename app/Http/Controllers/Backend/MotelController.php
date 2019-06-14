@@ -64,4 +64,29 @@ class MotelController extends Controller
             return redirect()->back()->with('error', 'Xóa không thành công');
         }
     }
+
+    public function active($id){
+
+        $room = MotelRoom::find($id);
+        $room->status = 1;
+
+        if ($room->save()) {
+            return redirect()->back()->with('success','Đã kiểm duyệt bài đăng: '.$room->title);
+        }
+        else {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra');
+        }
+    }
+
+    public function unactive($id){
+        $room = MotelRoom::find($id);
+        $room->status = 0;
+
+        if ($room->save()) {
+            return redirect()->back()->with('success','Đã ẩn bài đăng: '.$room->title);
+        }
+        else {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra');
+        }
+    }
 }

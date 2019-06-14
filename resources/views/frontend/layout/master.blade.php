@@ -28,7 +28,7 @@
 
     {!! \Meta::display([], true) !!}
 </head>
-<body class="stretched side-push-panel {{ ($errors->has('email') || $errors->has('password') || Session::has('error_login')) ? 'side-panel-open' : '' }}">
+<body class="stretched side-push-panel no-transition {{ ($errors->has('email') || $errors->has('password') || Session::has('error_login')) ? 'side-panel-open' : '' }}">
 @include('frontend.includes.header')
 <div class="clearfix"></div>
 <div id="wrapper" class="clearfix">
@@ -39,7 +39,7 @@
     ============================================= -->
     <section id="content">
 
-        <div class="content-wrap nopadding" style="z-index: 1;">
+        <div class="content-wrap nopadding">
             @yield('content')
         </div>
 

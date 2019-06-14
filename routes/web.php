@@ -27,6 +27,8 @@ Route::group([
 ], function () {
     Route::get('/load-district', 'Ajax\CityAjaxController@getDistrictByCity')->name('ajax.district');
     Route::get('/load-ward', 'Ajax\CityAjaxController@getWardByDistrict')->name('ajax.ward');
+    Route::post('/report-motel', 'Ajax\MotelAjaxController@report')->name('ajax.report');
+    Route::post('/save-motel', 'Ajax\MotelAjaxController@report')->name('ajax.report');
 
     Route::group([
         'prefix' => 'dropzone',
@@ -49,7 +51,24 @@ Route::group([
 ], function () {
     Route::get('/trang-ca-nhan', 'ProfileController@index')->name('profile');
     Route::get('/tin-da-dang', 'ProfileController@motelPost')->name('profile.motel_post');
+    Route::get('/tin-da-luu', 'ProfileController@motelSave')->name('profile.motel_save');
     Route::get('/dang-tin-mien-phi', 'MotelRoomController@showFormPostMotel')->name('motel_post.view');
     Route::post('/dang-tin-mien-phi', 'MotelRoomController@postMotel')->name('motel_post.post');
 
+    Route::group([
+        'prefix' => 'ajax',
+    ], function () {
+
+        Route::post('/report-motel', 'Ajax\MotelAjaxController@report')->name('ajax.report');
+        Route::post('/save-motel', 'Ajax\MotelAjaxController@save')->name('ajax.save');
+        Route::post('/unsave-motel/{id}', 'Ajax\MotelAjaxController@unSave')->name('ajax.unsave');
+
+        Route::group([
+            'prefix' => 'dropzone',
+        ], function () {
+            Route::post('/upload/store', 'DropzoneUploadController@fileStore')->name('ajax.upload.store');
+            Route::post('/delete', 'DropzoneUploadController@fileDestroy')->name('ajax.upload.delete');
+        });
+
+    });
 });
