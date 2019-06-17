@@ -12,10 +12,10 @@ return [
 
     // Middlewares which should be applied to all package routes.
     // For laravel 5.1 and before, remove 'web' from the array.
-    'middlewares' => ['web', 'auth'],
+    'middlewares' => ['web','admin'],
 
     // The url to this package. Change it if necessary.
-    'url_prefix' => 'laravel-filemanager',
+    'url_prefix' => '/admin/laravel-filemanager',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,16 +24,16 @@ return [
     */
 
     // If true, private folders will be created for each signed-in user.
-    'allow_multi_user' => true,
+    'allow_multi_user' => false,
     // If true, share folder will be created when allow_multi_user is true.
-    'allow_share_folder' => true,
+    'allow_share_folder' => false,
 
     // Flexible way to customize client folders accessibility
     // If you want to customize client folders, publish tag="lfm_handler"
     // Then you can rewrite userField function in App\Handler\ConfigHander class
     // And set 'user_field' to App\Handler\ConfigHander::class
     // Ex: The private folder of user will be named as the user id.
-    'user_field' => UniSharp\LaravelFilemanager\Handlers\ConfigHandler::class,
+//    'user_field' => UniSharp\LaravelFilemanager\Handlers\ConfigHandler::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -43,12 +43,12 @@ return [
 
     // Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on.
     // You should create routes to serve images if it is not set to public.
-    'base_directory' => 'public',
+    'base_directory' => 'public/upload',
 
     'images_folder_name' => 'photos',
-    'files_folder_name'  => 'files',
+    'files_folder_name'  => '',
 
-    'shared_folder_name' => 'shares',
+    'shared_folder_name' => '',
     'thumb_folder_name'  => 'thumbs',
 
     /*

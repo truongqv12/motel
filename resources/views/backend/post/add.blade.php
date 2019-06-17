@@ -11,14 +11,19 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{route('products.index')}}">Bài viết</a></li>
+            <li><a href="{{route('posts.index')}}">Bài viết</a></li>
             <li class="active">add</li>
         </ol>
     </section>
 
     <section class="content">
-
-        <form action="{{route('category.store')}}" method="POST" role="form" enctype="multipart/form-data">
+        <div class="margin-bottom">
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+                <button type="reset" class="btn btn-warning ">Làm lại</button>
+            </div>
+        </div>
+        <form action="{{route('posts.store')}}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-6">
@@ -39,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <label>* Tiêu đề</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên danh mục" id="name"
+                                <input type="text" class="form-control" placeholder="Nhập tiêu đề bài viết" id="name"
                                        name="pos_title" value="{{ old('pos_title') }}">
                             </div>
                             @if($errors->has('pos_title'))
@@ -50,8 +55,7 @@
                             <div class="form-group">
                                 <label>Mô tả ngắn</label>
                                 <textarea type="text" class="form-control" name="pos_teaser"
-                                          style="resize: none; height:100px">
-                                    {{ old('pos_teaser') }} </textarea>
+                                          style="resize: none; height:100px">{{ old('pos_teaser') }} </textarea>
                             </div>
                             @if($errors->has('pos_teaser'))
                                 <div class="help-block text-red">
@@ -62,11 +66,11 @@
                                 <label>Trạng thái</label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="cat_active" value="0">
-                                        <span class="label label-danger">Ban</span>
+                                        <input type="radio" name="pos_active" value="0">
+                                        <span class="label label-danger">Hide</span>
                                     </label>
                                     <label>
-                                        <input checked type="radio" name="cat_active" value="1">
+                                        <input checked type="radio" name="pos_active" value="1">
                                         <span class="label label-success">Active</span>
                                     </label>
                                 </div>
@@ -83,7 +87,12 @@
                             <div class="form-group">
                                 <label>Ảnh đại diện</label>
                                 <input type="file" class="form-control"
-                                       name="post_image" value="{{ old('pos_teaser') }}">
+                                       name="upload_image">
+                                @if($errors->has('upload_image'))
+                                    <div class="help-block text-red">
+                                        * {!! $errors->first('upload_image') !!}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="">SEO title :</label>
@@ -112,6 +121,11 @@
                             <h3 class="box-title">Nội dung :</h3>
                         </div>
                         <div class="box-body">
+                            @if($errors->has('pos_content'))
+                                <div class="help-block text-red">
+                                    * {!! $errors->first('pos_content') !!}
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <textarea class="form-control" id="pos_content" style="height:100px"
                                           name="pos_content">{{ old('pos_content') }}</textarea>
@@ -121,16 +135,25 @@
                     </div>
 
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Tạo mới</button>
-                    <button type="reset" class="btn btn-warning ">Làm lại</button>
-                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Tạo mới</button>
+                <button type="reset" class="btn btn-warning ">Làm lại</button>
             </div>
         </form>
     </section>
 @endsection
 @section('script')
     <script>
-        CKEDITOR.replace('pos_content');
+        var options = {
+            filebrowserImageBrowseUrl: '/admin/laravel-filemanager?type=Images',
+            // filebrowserImageUploadUrl: '/admin/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/admin/laravel-filemanager?type=Files',
+            extraPlugins : 'justify,image2',
+            // filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('pos_content', options);
     </script>
 @endsection

@@ -60,6 +60,11 @@ class MotelRoom extends Model
         );
     }
 
+    public function scopeStatus($query)
+    {
+        return (request()->status == "") ? $query : $query->where('status', '=', request()->status);
+    }
+
     public function scopeAddress($query)
     {
         return empty(request()->address) ? $query : $query->where('address', 'like', '%' . request()->address . '%');

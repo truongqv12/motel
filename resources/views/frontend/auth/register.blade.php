@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login_container"
-         style=" background: url('{{ asset('assets/images/banner-login.png') }}') center center no-repeat; background-size: cover;">
+         style=" background: url('{{ asset('assets/images/slide_new.jpg') }}') center center no-repeat; background-size: cover;">
     </div>
     <div class="card card_register divcenter noradius noborder allmargin modal-padding"
 

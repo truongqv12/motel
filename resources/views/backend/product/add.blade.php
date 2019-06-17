@@ -12,13 +12,13 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{route('products.index')}}">Danh mục</a></li>
+            <li><a href="{{route('motelroom.index')}}">Phòng trọ</a></li>
             <li class="active">add</li>
         </ol>
     </section>
     <!-- Main content -->
     <section class="content">
-        <form action="{{route('products.store')}}" method="POST" role="form" enctype="multipart/form-data">
+        <form action="{{route('motelroom.store')}}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="box box-danger">
                 <div class="box-header">
@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Thông tin sản phẩm</label>
+                                <label>Thông tin phòng trọ</label>
                                 <select class="form-control select2" style="width: 100%;" name="category_id">
                                     <option value="">|--- Chọn danh mục ---|</option>
                                     @php multiple_lever_category($categories) @endphp;
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">@</span>
-                                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="name"
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" name="name"
                                            id="name" value="{{ old('name') }}">
                                 </div>
                             </div>

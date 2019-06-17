@@ -21,6 +21,8 @@ Route::get('/tim-kiem', 'MotelRoomController@search')->name('motel.search');
 
 Route::get('/ban-do', 'MapController@index')->name('map.index');
 
+Route::get('/tin-tuc/{rewrite}', 'PostController.php@index')->name('news.index');
+
 
 Route::group([
     'prefix' => 'ajax',

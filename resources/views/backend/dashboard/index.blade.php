@@ -25,31 +25,73 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="callout callout-info">
-            <h4>Tip!</h4>
+        <div class="callout callout-danger">
+            <h4>Chào mừng đến với trang quản trị</h4>
 
-            <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your sidebar
-                is bigger than your content because it prevents extra unwanted scrolling.</p>
+            <p>Mọi thông tin đều được thống kê tại đây</p>
             </div>
         <!-- Default box -->
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Title</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fa fa-times"></i></button>
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{ $motels_active }}</h3>
+
+                        <p>Phòng trọ đã duyệt</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-home"></i>
+                    </div>
+                    <a href="{{route('motelroom.index').'?status=1'}}" class="small-box-footer">Danh sách <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="box-body">
-                Start creating your amazing application!
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>{{ $users }}</h3>
+
+                        <p>Người dùng đã đăng ký</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-ios-people"></i>
+                    </div>
+                    <a href="{{ route('users.index') }}" class="small-box-footer">Danh sách <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-                Footer
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>{{ $reports }}</h3>
+
+                        <p>Báo cáo nội dung</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-android-list"></i>
+                    </div>
+                    <a href="{{ route('motelroom.report') }}" class="small-box-footer">Danh sách <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
-            <!-- /.box-footer-->
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>{{ $motels_hide }}</h3>
+
+                        <p>Phòng trọ đang chờ duyệt</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-ios-home-outline"></i>
+                    </div>
+                    <a href="{{route('motelroom.index').'?status=0'}}" class="small-box-footer">Danh sách <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
         </div>
         <!-- /.box -->
     </section>

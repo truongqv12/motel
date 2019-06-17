@@ -50,14 +50,16 @@ class UserController extends BackendController
         $request->offsetunset('_token');
         $imgName = '';
         if($request->hasFile('upload_avatar')){
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/user';
+
             $image      = $request->file('upload_avatar');
             $imgName   = time() . '.' . $image->getClientOriginalExtension();
-            Storage::disk('user')->put($imgName,file_get_contents($image));
+            $image->move($destinationPath, $imgName);
         }
 
         $request->merge([
             'avatar' => $imgName,
-            'password' => bcrypt($request->password)
+            'password' => $request->password
         ]);
 
         if (User::create($request->all())) {
@@ -96,11 +98,16 @@ class UserController extends BackendController
         );
         $request->offsetunset('_token');
         if($request->hasFile('upload_avatar')){
-            Storage::disk('user')->delete($user->avatar);
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/user';
+
+            $image_path = $destinationPath . "/" . $user->avatar;
+            if (\File::exists($image_path)) {
+                \File::delete($image_path);
+            }
+
             $image      = $request->file('upload_avatar');
             $imgName   = time() . '.' . $image->getClientOriginalExtension();
-            Storage::disk('user')->put($imgName,file_get_contents($image));
-
+            $image->move($destinationPath, $imgName);
             $user->avatar = $imgName;
         }
 
@@ -124,7 +131,12 @@ class UserController extends BackendController
         $user = $this->userRepository->findById($id);
 
         if ($user->delete()) {
-            Storage::disk('user')->delete($user->avatar);
+            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/upload/user';
+
+            $image_path = $destinationPath . "/" . $user->avatar;
+            if (\File::exists($image_path)) {
+                \File::delete($image_path);
+            }
             return redirect()->back()->with('success','Xóa thành công');
         }
         else {

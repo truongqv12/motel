@@ -43,7 +43,7 @@
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-red-light fixed sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 

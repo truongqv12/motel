@@ -53,7 +53,7 @@ class MotelRepository implements MotelInterface
 
     public function getByRewrite($rewrite)
     {
-        $motel = MotelRoom::where('slug', '=', $rewrite)->first();
+        $motel = MotelRoom::where('status', '=', 1)->where('slug', '=', $rewrite)->first();
 
         if ($motel) {
             $motel = transformer_item($motel, new MotelRoomTransformer(), ['user', 'city', 'district', 'ward', 'category']);

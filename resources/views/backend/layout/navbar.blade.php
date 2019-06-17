@@ -46,7 +46,7 @@
                     <li><a href="{{route('category.create').'?type=MOTEL'}}">
                             <i class="fa fa-caret-right"></i> Thêm mới danh mục</a></li>
                     <li><a href="{{route('motelroom.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
-                    <li><a href="//"><i class="fa fa-caret-right"></i> Báo cáo</a></li>
+                    <li><a href="{{ route('motelroom.report') }}"><i class="fa fa-caret-right"></i> Báo cáo nội dung</a></li>
                 </ul>
             </li>
 
@@ -78,6 +78,9 @@
                     <li><a href="{{route('administration.index')}}"><i class="fa fa-caret-right"></i> Danh sách</a></li>
                     <li><a href="{{route('administration.create')}}"><i class="fa fa-caret-right"></i> Thêm mới</a></li>
                 </ul>
+            </li>
+            <li class="active">
+                <a href="{{route('admin.file')}}"><i class="fa fa-folder"></i><span>File Manager</span></a>
             </li>
         </ul>
     </section>
