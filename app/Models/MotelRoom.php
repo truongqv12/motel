@@ -24,6 +24,16 @@ class MotelRoom extends Model
         );
     }
 
+    public function amenities()
+    {
+        return $this->belongsToMany(
+            Amenities::class,
+            'motelroom_amenities',
+            'motelroom_id',
+            'amenities_id'
+        );
+    }
+
     public function district()
     {
         return $this->belongsTo(
@@ -85,4 +95,15 @@ class MotelRoom extends Model
         $arr_price = explode(';', request()->price);
         return empty(request()->price) ? $query : $query->whereBetween('price', $arr_price);
     }
+
+//
+    public function scopeAmenities($query)
+    {
+        $amenities_id = request()->amenities;
+
+        return empty(request()->amenities) ? $query : $query->whereHas('amenities', function ($query) use ($amenities_id) {
+            $query->whereIn('motelroom_amenities.amenities_id', $amenities_id);
+        });
+    }
+
 }

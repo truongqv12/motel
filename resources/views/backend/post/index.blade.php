@@ -41,12 +41,13 @@
                                     <td>{{$item->pos_id}}</td>
                                     <td>{{$item->category['cat_name']}}</td>
                                     <td>
-                                        <img src="{{(preg_match('/http/', $item->pos_image)) ? $item->pos_image : asset('storage/uploads/product/' . $item->image) }}"
+                                        <img src="{{(preg_match('/http/', $item->pos_image)) ? $item->pos_image : asset('/upload/photos/' . $item->pos_image) }}"
                                              alt="" style="width: 60px; height: 90px"
                                              title="{{$item->pos_title}}">
                                     </td>
                                     <td style="font-weight: 600">{{$item->pos_title}}</td>
-                                    <td><a href="">link</a></td>
+                                    <td><a href="{{ route('news.detail', ['rewrite' => $item->pos_rewrite]) }}">link</a>
+                                    </td>
                                     <td>{{$item->pos_teaser}}</td>
                                     <td>
                                         @if($item->pos_active == 1)
@@ -63,9 +64,9 @@
                                     </td>
                                     <td>
                                         @if(Auth::guard('admin')->user()->edit == 1)
-                                            <a href="{{route('posts.edit',['id' => $item->id])}}"
-                                               class="btn btn-action label label-success"><i
-                                                        class="fa fa-pencil"></i></a>
+                                            <a href="{{route('posts.edit',['id' => $item->pos_id])}}"
+                                               class="btn btn-action label label-success">
+                                                <i class="fa fa-pencil"></i></a>
                                         @endif
 
                                         @if(Auth::guard('admin')->user()->delete == 1)

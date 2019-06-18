@@ -35,13 +35,20 @@
                                 </div>
                             </div>
                             <div class="search_box_header_middle">
-                                <h3 class="title">Chọn loại phòng</h3>
-                                <div class="form-group">
-                                    <div class="radio_inline_item nopadding">
-                                        <input type="radio" class="radio-style" name="motel_type" id="payment_type_1"
-                                               value="1">
-                                        <label for="payment_type_1" class="radio-style-2-label radio-small text-white">Phòng trọ,
-                                            nhà trọ </label>
+                                <h3 class="title">Tiện ích</h3>
+                                <div class="form-group amenities-box nomargin">
+                                    <div class="row">
+                                        @foreach($amenities ?: []  as $item)
+                                            <div class="col-md-6 norightpadding amen_item">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input amenities_check"
+                                                               name="amenities[]"
+                                                               value="<?= $item->get('id') ?>"><?= $item->get('name') ?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +157,20 @@
 @endsection
 
 @section('script')
-    <script !src="">
+    <script>
+        $('.form-check-input').iCheck({
+            checkboxClass: 'icheckbox_square-red',
+            radioClass: 'iradio_square-red',
+            increaseArea: '15%' // optional
+        });
+
+        $('.form-check-input').on('ifChecked', function (event) {
+            $(this).parent().parent().css('color', '#33CC66');
+        });
+        $('.form-check-input').on('ifUnchecked', function (event) {
+            $(this).parent().parent().css('color', '#ffffff');
+        });
+
         $(".range_13").ionRangeSlider({
             type: "double",
             grid: true,

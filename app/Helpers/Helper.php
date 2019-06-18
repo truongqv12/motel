@@ -361,13 +361,15 @@ if (!function_exists('append_url')) {
         // check mảng append link để xuất ra link
         $appendLink = array ();
         $append     = $page ? array_merge($append, $page) : $append;
-
         foreach ($append as $ka => $va) {
             if (preg_match('/^\d+$/', $ka)) {
                 throw new Exception('Giá trị ' . $va . ' gán link có key= ' . $ka . ' phải là một chuoi');
             }
-
-            if ($va) {
+            if (is_array($va)) {
+                foreach ($va as $va1) {
+                    $appendLink[urlencode($ka . '[]')] = urlencode($ka . '[]') . '=' . urlencode($va1);
+                }
+            } elseif ($va) {
                 $appendLink[urlencode($ka)] = urlencode($ka) . '=' . urlencode($va);
             }
         }

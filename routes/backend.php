@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', 'Backend\UserController');
     Route::resource('category', 'Backend\CategoryController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
     Route::resource('posts', 'Backend\PostController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('setting', 'Backend\SettingController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
     Route::resource('motelroom', 'Backend\MotelController', ['only' => ['index', 'destroy']]);
     Route::group([
         'prefix' => 'motelroom',

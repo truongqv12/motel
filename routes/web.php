@@ -21,7 +21,8 @@ Route::get('/tim-kiem', 'MotelRoomController@search')->name('motel.search');
 
 Route::get('/ban-do', 'MapController@index')->name('map.index');
 
-Route::get('/tin-tuc/{rewrite}', 'PostController.php@index')->name('news.index');
+Route::get('/bai-viet/{rewrite}', 'PostController@list')->name('news.list');
+Route::get('/news/{rewrite}', 'PostController@detail')->name('news.detail');
 
 
 Route::group([

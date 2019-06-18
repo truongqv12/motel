@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'pos_title'    => 'required|unique:posts,pos_title',
+            'pos_title'    => 'required|unique:posts,pos_title,' . $this->pos_id . ',pos_id',
             'upload_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'pos_teaser'   => 'required',
             'pos_content'  => 'required',

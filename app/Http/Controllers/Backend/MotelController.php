@@ -78,7 +78,8 @@ class MotelController extends BackendController
     public function active($id)
     {
 
-        $room         = MotelRoom::find($id);
+        $room = MotelRoom::findOrFail($id);
+
         $room->status = 1;
 
         if ($room->save()) {
@@ -90,7 +91,8 @@ class MotelController extends BackendController
 
     public function unactive($id)
     {
-        $room         = MotelRoom::find($id);
+        $room = MotelRoom::findOrFail($id);
+
         $room->status = 0;
 
         if ($room->save()) {

@@ -12,8 +12,8 @@ use App\Repositories\CitiesInterface;
 use App\Repositories\CitiesRepository;
 use App\Repositories\MotelInterface;
 use App\Repositories\MotelRepository;
-use App\Repositories\ProductInterface;
-use App\Repositories\ProductRepository;
+use App\Repositories\PostInterface;
+use App\Repositories\PostRepository;
 use App\Repositories\UserInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
 
-        $this->app->bind(ProductInterface::class, ProductRepository::class);
+        $this->app->bind(PostInterface::class, PostRepository::class);
 
         $this->app->bind(BannerInterface::class, BannerRepository::class);
 

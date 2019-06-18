@@ -16,6 +16,7 @@ use App\Models\UserMotel;
 use App\Transformers\AmenitiesTransformer;
 use App\Transformers\MotelRoomTransformer;
 use App\Transformers\UserMotelTransformer;
+use Illuminate\Support\Facades\DB;
 
 class MotelRepository implements MotelInterface
 {
@@ -64,7 +65,7 @@ class MotelRepository implements MotelInterface
     public function search($rq)
     {
         $paginator = MotelRoom::where('status', 1)
-            ->address()->city_id()->district_id()->price()
+            ->address()->city_id()->district_id()->price()->amenities($rq->amenities)
             ->orderBy('id', "DESC")
             ->paginate(30);
 

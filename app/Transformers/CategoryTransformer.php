@@ -19,12 +19,18 @@ class CategoryTransformer extends TransformerAbstract
 
     public function transform($item)
     {
+        $url = '';
+        if ($item->cat_type == 'MOTEL') {
+            $url .= route('motel.list', ['rewrite' => $item->cat_rewrite]);
+        } else {
+            $url .= route('news.list', ['rewrite' => $item->cat_rewrite]);
+        }
         return [
             'id'        => (int)$item->cat_id,
             'name'      => $item->cat_name,
             'rewrite'   => $item->cat_rewrite,
             'parent_id' => $item->cat_parent_id,
-            'url'       => route('motel.list', ['rewrite' => $item->cat_rewrite]),
+            'url'       => $url,
             'type'      => $item->cat_type,
             'active'    => $item->cat_active,
             'seo'       => [

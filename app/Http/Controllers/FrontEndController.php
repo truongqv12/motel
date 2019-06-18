@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\CategoryInterface;
 use App\Repositories\CitiesInterface;
 use App\Repositories\MotelInterface;
+use App\Repositories\PostInterface;
 
 
 class FrontEndController extends Controller
@@ -12,17 +13,20 @@ class FrontEndController extends Controller
     public $categoryRepository;
     public $motelRepository;
     public $citiesRepository;
+    public $postRepository;
 
     public function __construct(
         CategoryInterface $categoryRepository,
         MotelInterface $motelRepository,
-        CitiesInterface $citiesRepository
+        CitiesInterface $citiesRepository,
+        PostInterface $postRepository
     )
     {
         $this->setMeta();
         $this->categoryRepository = $categoryRepository;
         $this->motelRepository    = $motelRepository;
         $this->citiesRepository   = $citiesRepository;
+        $this->postRepository     = $postRepository;
         $this->header();
 
     }
@@ -30,8 +34,8 @@ class FrontEndController extends Controller
     public function header()
     {
         $categories = $this->categoryRepository->allByType("MOTEL");
-        $cats_post = $this->categoryRepository->allByType("POST");
-        \View::share(compact('categories','cats_post'));
+        $cats_post  = $this->categoryRepository->allByType("POST");
+        \View::share(compact('categories', 'cats_post'));
     }
 
     public function setMeta()

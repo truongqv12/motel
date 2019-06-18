@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/css/components/select2.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/fancybox/dist/jquery.fancybox.min.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/icheck/skins/square/green.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/icheck/skins/square/red.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/responsive.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/toastr.min.css" type="text/css"/>
 

@@ -2,18 +2,16 @@
 @section('page_title','Administration')
 
 @section('custom_css')
-    <style>
-    </style>
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Quản lý đơn hàng
+            Quản lý tác giả
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Đơn hàng</li>
+            <li class="active">Setting</li>
 
         </ol>
     </section>
@@ -23,7 +21,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Danh sách đơn hàng</h3>
+                        <h3 class="box-title">Danh sách cấu hình</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive">
@@ -31,41 +29,41 @@
                             <thead>
                             <tr>
                                 @foreach($columns as $column)
-                                    <th>{{$column}}</th>
+                                    <th class="bg-primary">{{$column}}</th>
                                 @endforeach
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($orders as $item)
+                            @foreach($settings as $item)
                                 <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->phone}}</td>
-                                    <td>{{$item->address}}</td>
-                                    <td>{{format_money($item->total_money_order)}}</td>
-                                    <td>
-                                        @if($item->order_status == 1)
-                                            <label class="label label-success">Đã duyệt</label>
-                                        @else
-                                            <label class="label label-danger">Đợi duyệt</label>
-                                        @endif
-                                    </td>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->label }}</td>
+                                    <td>{{ $item->key }}</td>
+                                    <td>{{ $item->value }}</td>
                                     <td>
                                         @if(Auth::guard('admin')->user()->edit == 1)
-                                            <a href="{{route('order.edit',['id' => $item->id])}}"
-                                               class="btn btn-action label label-success"><i
-                                                        class="fa fa-pencil"></i></a>
+                                            <a href="{{route('setting.edit',['id' => $item->id])}}"
+                                               class="btn btn-action label label-success">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        @endif
+
+                                        @if(Auth::guard('admin')->user()->delete == 1)
+                                            <form action="{{ route('setting.destroy', ['id' => $item->id]) }}"
+                                                  method="post" class="inline">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa')"
+                                                        class="btn btn-action label label-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         @endif
                                     </td>
+                                </tr>
+
                             @endforeach
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                @foreach($columns as $column)
-                                    <th>{{$column}}</th>
-                                @endforeach
-                            </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.box-body -->

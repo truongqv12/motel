@@ -137,7 +137,7 @@
                     @endforeach
                     <li class="mega_menu">
                         <a href="/" class="main_menu_href">
-                            <div>Tin tức</div>
+                            <div>Bài viết</div>
                         </a>
                         <ul class="mega_menu_box">
                             @foreach($cats_post ?: [] as $item)

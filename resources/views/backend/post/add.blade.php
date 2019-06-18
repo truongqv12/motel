@@ -17,12 +17,6 @@
     </section>
 
     <section class="content">
-        <div class="margin-bottom">
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Tạo mới</button>
-                <button type="reset" class="btn btn-warning ">Làm lại</button>
-            </div>
-        </div>
         <form action="{{route('posts.store')}}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">

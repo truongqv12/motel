@@ -1218,7 +1218,7 @@ $height_to_bar: 40px;
 .post_detail {
   .post_detail_content {
     img {
-      width: 100% !important;
+      //width: 100% !important;
       height: auto !important;
     }
     p {
@@ -1824,6 +1824,47 @@ $height_to_bar: 40px;
     background: white;
   }
 }
+
+.amenities-box {
+  .amen_item {
+    margin-bottom: 5px;
+  }
+  .form-check {
+    padding-left: 10px;
+  }
+  .form-check-label {
+    color: #FFFFFF;
+    font-size: 13px;
+    line-height: 14px;
+    text-transform: inherit;
+    vertical-align: middle;
+    font-weight: 300;
+    &:hover{
+      color: $theme-color;
+    }
+    .icheckbox_square-red, .iradio_square-red {
+      margin-right: 10px;
+    }
+
+    .icheckbox_square-red, .iradio_square-red {
+      background-size: 172px 18px;
+      width: 18px;
+      height: 18px;
+    }
+    .icheckbox_square-red, .iradio_square-red {
+      background-position: -16px 0;
+    }
+    .icheckbox_square-red.hover, .iradio_square-red.hover {
+      background-position: -33px 0;
+    }
+
+    .icheckbox_square-red.checked, .iradio_square-red.checked {
+      background-position: -33px 0;
+    }
+
+  }
+}
+
 .modal-dialog {
   margin-top: 100px;
 }
