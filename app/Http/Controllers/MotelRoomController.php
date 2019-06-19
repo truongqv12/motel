@@ -6,6 +6,7 @@ use App\Http\Requests\MotelRoomRequest;
 use App\Models\Amenities;
 use App\Models\MotelAmenities;
 use App\Models\MotelRoom;
+use App\Transformers\MotelRoomTransformer;
 use Illuminate\Http\Request;
 
 class MotelRoomController extends FrontEndController
@@ -46,9 +47,9 @@ class MotelRoomController extends FrontEndController
 
         $meta = [
             'title'          => $motel->get('title'),
-            'description'    => htmlentities($motel->get('description')),
+            'description'    => htmlentities($motel->get('title')),
             'keywords'       => $motel->get('title'),
-            'og:description' => htmlentities($motel->get('description')),
+            'og:description' => htmlentities($motel->get('title')),
             'og:title'       => $motel->get('title'),
         ];
 
@@ -59,9 +60,15 @@ class MotelRoomController extends FrontEndController
 
     public function search(Request $rq)
     {
-        $motels = $this->motelRepository->search($rq);
+        $paginator = $this->motelRepository->search($rq);
+//dd($pagin);
+        $motels = $paginator->getCollection();
 
-        return view('frontend.includes.search', compact('motels'));
+        $motels = transformer_collection_paginator($motels, new MotelRoomTransformer(), $paginator);
+
+        $motels = $motels['data'] ? collect_recursive($motels['data']) : false;
+
+        return view('frontend.includes.search', compact('paginator','motels'));
     }
 
     public function showFormPostMotel()
@@ -73,10 +80,6 @@ class MotelRoomController extends FrontEndController
         return view('frontend.includes.post_motel', compact('cities', 'amenities', 'typeRoom'));
     }
 
-    /**
-     * @param MotelRoomRequest $rq
-     * @return $this
-     */
     public function postMotel(MotelRoomRequest $rq)
     {
         $latlng    = [];
@@ -128,6 +131,19 @@ class MotelRoomController extends FrontEndController
             return redirect()->route('index')->with('success', 'Thêm mới sản phẩm thành công');
         } else {
             return redirect()->back()->with('error', 'Thêm mới sản phẩm thất bại, vui lòng thử lại');
+        }
+    }
+
+    public function updateStatusMotel($id,$status) {
+
+        $room = MotelRoom::findOrFail($id);
+
+        $room->status = $status;
+
+        if ($room->save()) {
+            return redirect()->back()->with('success', 'Thay đổi trạng thái phòng thành công');
+        } else {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra');
         }
     }
 }

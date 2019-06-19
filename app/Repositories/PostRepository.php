@@ -41,6 +41,37 @@ class PostRepository implements PostInterface
         return ($item) ? collect_recursive($item) : false;
     }
 
+    public function getPostsLimit($category_id = null, $type = null, $limit = 5, $hot = true, $id = 0)
+    {
+        $modal = Post::where('pos_active', 1);
+
+        if ($category_id) {
+            $modal = $modal->where('pos_category_id',$category_id);
+        }
+
+        if ($type) {
+            $modal = $modal->where('pos_type','=',$type);
+        }
+
+        if ($hot) {
+            $modal = $modal->where('pos_is_hot','=',1);
+        }
+
+        if ($id) {
+            $modal = $modal->where('pos_id','<>',$id);
+        }
+
+        $items = $modal->limit($limit)
+            ->orderBy('pos_total_view', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        if ($items) {
+            $items = transformer_collection($items, new PostTransformer());
+        }
+        return ($items) ? collect_recursive($items) : false;
+    }
+
     public function visited($id)
     {
         Post::where('pos_id', $id)

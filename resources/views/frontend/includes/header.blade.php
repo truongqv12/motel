@@ -77,12 +77,22 @@
                             <ul class="select_user_box">
                                 <li>
                                     <a href="{{route('profile')}}">
-                                        <i class="icon-user"></i> Tài khoản
+                                        <i class="icon-lock"></i> Tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('profile.motel_post')}}">
+                                        <i class="icon-home"></i> Tin đã đăng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('profile.motel_save')}}">
+                                        <i class="icon-save"></i> Tài đã lưu
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?= route('logout') ?>">
-                                        <i class="icon-lock"></i> Đăng xuất
+                                        <i class="icon-signout"></i> Đăng xuất
                                     </a>
                                 </li>
                             </ul>

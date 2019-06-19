@@ -40,6 +40,11 @@
                         <label>* Mã</label>
                         <input type="text" class="form-control" placeholder="Nhập mã setting" name="key"
                                id="" value="{{ old('key') }}">
+                        @if($errors->has('key'))
+                            <div class="help-block text-red">
+                                * {!! $errors->first('key') !!}
+                            </div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>* Loại</label>
@@ -50,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label>* Giá trị</label>
-                        <textarea name="swe_value_plain_text" id="swe_value_plain_text" class="swe_value_plain_text"></textarea>
+                        <textarea name="swe_value_plain_text" id="swe_value_plain_text" class="swe_value_plain_text">{{ old('swe_value_plain_text') }}</textarea>
                         <div class="swe_value_image" id="swe_value_image" style="display: none">
                             <input class="form-control" type="file" title="" id="" name="swe_value_image" size=""
                                    style="display: inline-block;">

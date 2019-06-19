@@ -407,3 +407,39 @@ if (!function_exists('getQueryUri')) {
         return $_SERVER['REQUEST_URI'];
     }
 }
+
+if (!function_exists('limit_text')) {
+
+    function limit_text($text, $limit)
+    {
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]) . '...';
+        }
+        return $text;
+    }
+}
+
+if (!function_exists('setting')) {
+    function setting($key, $default = null)
+    {
+
+        if (!app()->has('settings')) {
+            $settings = (new SettingRepository())->all();
+            app()->singleton('settings', $settings->keyBy('key'));
+        }
+        $settings = app('settings');
+
+        return isset($settings[$key]) ? $settings[$key]->value : $default;
+    }
+}
+
+if (!function_exists('setting_image')) {
+    function setting_image($key, $default = null)
+    {
+        $image_name = setting($key, $default);
+
+        return url() . '/upload/settings/' . $image_name;
+    }
+}

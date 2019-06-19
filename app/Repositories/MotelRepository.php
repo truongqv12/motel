@@ -68,12 +68,12 @@ class MotelRepository implements MotelInterface
             ->address()->city_id()->district_id()->price()->amenities($rq->amenities)
             ->orderBy('id', "DESC")
             ->paginate(30);
-
-        $motels = $paginator->getCollection();
-
-        $motels = transformer_collection_paginator($motels, new MotelRoomTransformer(), $paginator);
-
-        return $motels['data'] ? collect_recursive($motels) : false;
+        return $paginator;
+//        $motels = $paginator->getCollection();
+//
+//        $motels = transformer_collection_paginator($motels, new MotelRoomTransformer(), $paginator);
+//
+//        return $motels['data'] ? collect_recursive($motels) : false;
     }
 
     public function allAmenities()
@@ -92,8 +92,17 @@ class MotelRepository implements MotelInterface
 
     public function myMotelSave()
     {
-        $items = UserMotel::where('user_id', auth()->user()->id)->get();
-        $items = transformer_collection($items, new UserMotelTransformer());
+        $items = UserMotel::with(['motel' => function ($q) {
+            return $q->where('status', 1);
+        }])->where('user_id', auth()->user()->id)
+            ->get();
+        $save  = [];
+        foreach ($items as $item) {
+            if ($item->motel != null) {
+                $save[] = $item;
+            }
+        }
+        $items = transformer_collection($save, new UserMotelTransformer());
         return $items ? collect_recursive($items) : false;
     }
 }

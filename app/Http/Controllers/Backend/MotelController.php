@@ -12,13 +12,13 @@ class MotelController extends BackendController
 
     public function index(Request $rp)
     {
-        $motels  = MotelRoom::with('category')->address()->status()->paginate(10);
-        $address = $rp->input('address');
+        $motels  = MotelRoom::with('category')->title()->status()->paginate(10);
+        $title = $rp->input('title');
         $status  = $rp->input('status');
         $columns = [
             'ID', 'Tiêu đề', 'Danh mục', 'Giá phòng', 'Trạng thái', 'Hành động'
         ];
-        return view('backend.motel.index', compact('motels', 'columns', 'address', 'status'));
+        return view('backend.motel.index', compact('motels', 'columns', 'title', 'status'));
     }
 
     public function report()

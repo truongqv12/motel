@@ -80,6 +80,11 @@ class MotelRoom extends Model
         return empty(request()->address) ? $query : $query->where('address', 'like', '%' . request()->address . '%');
     }
 
+    public function scopeTitle($query)
+    {
+        return empty(request()->title) ? $query : $query->where('title', 'like', '%' . request()->title . '%');
+    }
+
     public function scopeCity_id($query)
     {
         return empty(request()->city) ? $query : $query->where('cty_id', request()->city);

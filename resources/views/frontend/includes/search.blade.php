@@ -7,8 +7,7 @@
             @if(!$motels)
                 <li class="breadcrumb-item active"><a href="">Tìm thấy 0 kết quả</a></li>
             @else
-                <li class="breadcrumb-item active"><a href="">Tìm
-                        thấy {{$motels->get('meta')->get('pagination')->get('total')}} kết quả</a></li>
+                <li class="breadcrumb-item active"><a href="">Tìm thấy <strong>{{ $paginator->total() }}</strong> kết quả</a></li>
             @endif
         </ol>
     </div>
@@ -30,7 +29,7 @@
                 </div>
             @else
                 <div class="row">
-                    @foreach($motels->get('data') ?: [] as $item)
+                    @foreach($motels ?: [] as $item)
                         <div class="col-md-4 mb-4">
                             <!-- Post Article -->
                             <article class="ipost room-item">
@@ -73,16 +72,8 @@
                     @endforeach
                 </div>
                 <div class="search_pagination bottommargin">
-                    <nav aria-label="Page navigation example">
-                        <?php
-                        echo show_paginate([
-                            'vars' => [
-                                'lastPage'    => $motels->get('meta')->get('pagination')->get('total_pages'),
-                                'currentPage' => $motels->get('meta')->get('pagination')->get('current_page')
-                            ]
-                        ], $_GET);
-                        ?>
-                    </nav>
+                    {{ $paginator->appends($_GET)->links() }}
+
                 </div>
             @endif
         </div>

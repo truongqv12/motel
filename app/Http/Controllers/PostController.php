@@ -44,13 +44,16 @@ class PostController extends FrontEndController
         $this->postRepository->visited($detail->get('id'));
         $meta = [
             'title'          => $detail->get('seo')->get('title') ?? $detail->get('title'),
-            'description'    => $detail->get('seo')->get('description') ?: $detail->get('name'),
-            'keywords'       => $detail->get('seo')->get('keywords') ?: $detail->get('name'),
-            'og:description' => $detail->get('seo')->get('description') ?: $detail->get('name'),
-            'og:title'       => $detail->get('seo')->get('description') ?: $detail->get('name'),
+            'description'    => $detail->get('seo')->get('description') ?: $detail->get('title'),
+            'keywords'       => $detail->get('seo')->get('keywords') ?: $detail->get('title'),
+            'og:description' => $detail->get('seo')->get('description') ?: $detail->get('title'),
+            'og:title'       => $detail->get('seo')->get('title') ?: $detail->get('title'),
         ];
         \Meta::set($meta);
 
-        return view('frontend.includes.post_detail', compact('detail'));
+        $posts_same = $this->postRepository->getPostsLimit($detail->get('category_id'), null, 5, false, $detail->get('id'));
+        $posts_new  = $this->postRepository->getPostsLimit(null, null, 5, false, $detail->get('id'));
+
+        return view('frontend.includes.post_detail', compact('detail', 'posts_new', 'posts_same'));
     }
 }

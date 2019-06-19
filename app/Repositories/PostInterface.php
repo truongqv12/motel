@@ -16,4 +16,6 @@ interface PostInterface
     public function getByRewrite($rewrite);
 
     public function visited($id);
+
+    public function getPostsLimit($category_id = null, $type = null, $limit = 5, $hot = true, $id = 0);
 }

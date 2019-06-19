@@ -54,15 +54,3 @@
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src=""></script>
-<script>
-
-</script>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-
-</script>
-<!--End of Tawk.to Script-->

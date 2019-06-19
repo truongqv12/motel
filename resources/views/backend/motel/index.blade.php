@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
-                                            <label>Tiêu đề</label><input name="address" value="{{$address}}"
+                                            <label>Tiêu đề</label><input name="title" value="{{$title}}"
                                                                          class="form-control"
                                                                          placeholder="Nhập tiêu đề">
                                         </div>

@@ -151,7 +151,9 @@ $height_to_bar: 40px;
       visibility: hidden;
       height: 0;
       opacity: 0;
-      border: 2px solid #0e90d2;
+      border-left: 2px solid $theme-color;
+      border-right: 2px solid $theme-color;
+      border-bottom: 2px solid $theme-color;
       -webkit-transition: all .4s ease;
       -o-transition: all .4s ease;
       transition: all .4s ease;
@@ -162,9 +164,12 @@ $height_to_bar: 40px;
         width: 100%;
         a {
           color: #000;
-          font-size: 12px;
+          font-size: 13px;
           font-weight: 500;
           text-transform: unset;
+          -webkit-transition: all .4s ease;
+          -o-transition: all .4s ease;
+          transition: all .4s ease;
           img {
             margin-right: .2rem;
             box-shadow: 0 0 10px #e2e2e2;
@@ -178,7 +183,8 @@ $height_to_bar: 40px;
             padding: 0 8px;
           }
           &:hover {
-            color: #00a7e1;
+            color: $theme-color;
+            padding-left: 25px;
           }
         }
       }
@@ -644,7 +650,9 @@ $height_to_bar: 40px;
   }
   padding-bottom: 10px;
 }
-
+.fb_iframe_widget {
+  width: 10% !important;
+}
 .search_pagination {
   .pagination {
     width: -moz-max-content;
@@ -657,6 +665,11 @@ $height_to_bar: 40px;
         background-color: #fff;
         border: 1px solid #6a6765;
         border-radius: 50% !important;
+        height: 35px;
+        line-height: 35px;
+        width: 35px;
+        padding: 0;
+        text-align: center;
         @media (max-width: 375px) {
           font-size: 12px;
           padding: 6px 10px;

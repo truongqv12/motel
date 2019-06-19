@@ -57,6 +57,7 @@ Route::group([
     Route::get('/tin-da-luu', 'ProfileController@motelSave')->name('profile.motel_save');
     Route::get('/dang-tin-mien-phi', 'MotelRoomController@showFormPostMotel')->name('motel_post.view');
     Route::post('/dang-tin-mien-phi', 'MotelRoomController@postMotel')->name('motel_post.post');
+    Route::get('/tin-da-dang/cap-nhat-trang-thai/{id}/{status}', 'MotelRoomController@updateStatusMotel')->name('motel_post.update_status');
 
     Route::group([
         'prefix' => 'ajax',
