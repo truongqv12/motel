@@ -77,6 +77,8 @@
                                         <td style="width: 400px">{{$item->title}}</td>
                                         <td>{{$item->category->cat_name}}</td>
                                         <td>{{format_money($item->price)}}</td>
+                                        <td><a href="{{ route('motelroom.view',['id' => $item->id]) }}" class=""
+                                               target="_blank">Link</a></td>
                                         <td>
                                             @if($item->status == 1)
                                                 <label class="label label-success">Đã phê duyệt</label>

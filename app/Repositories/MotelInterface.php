@@ -19,6 +19,8 @@ interface MotelInterface
 
     public function getByRewrite($rewrite);
 
+    public function getById($id, $admin = false);
+
     public function search($rq);
 
     public function allAmenities();

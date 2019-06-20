@@ -62,6 +62,23 @@ class MotelRepository implements MotelInterface
         return ($motel) ? collect_recursive($motel) : false;
     }
 
+    public function getById($id, $admin = false)
+    {
+        $motel = MotelRoom::where('id', $id);
+
+        if (!$admin) {
+            $motel = $motel->where('status', '=', 1)->where('use_id', auth()->user()->id);
+        }
+
+        $motel = $motel->first();
+
+        if ($motel) {
+            $motel = transformer_item($motel, new MotelRoomTransformer(), ['user', 'city', 'district', 'ward', 'category']);
+        }
+
+        return ($motel) ? collect_recursive($motel) : false;
+    }
+
     public function search($rq)
     {
         $paginator = MotelRoom::where('status', 1)

@@ -32,5 +32,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/active/{id}', 'Backend\MotelController@active')->name('motelroom.active');
         Route::get('/unactive/{id}', 'Backend\MotelController@unactive')->name('motelroom.unactive');
         Route::get('/report', 'Backend\MotelController@report')->name('motelroom.report');
+        Route::get('/view/{id}', 'Backend\MotelController@view')->name('motelroom.view');
     });
 });

@@ -12,11 +12,11 @@ class MotelController extends BackendController
 
     public function index(Request $rp)
     {
-        $motels  = MotelRoom::with('category')->title()->status()->paginate(10);
-        $title = $rp->input('title');
+        $motels  = MotelRoom::with('category')->title()->status()->orderBy('id', 'DESC')->paginate(10);
+        $title   = $rp->input('title');
         $status  = $rp->input('status');
         $columns = [
-            'ID', 'Tiêu đề', 'Danh mục', 'Giá phòng', 'Trạng thái', 'Hành động'
+            'ID', 'Tiêu đề', 'Danh mục', 'Giá phòng', 'Xem', 'Trạng thái', 'Hành động'
         ];
         return view('backend.motel.index', compact('motels', 'columns', 'title', 'status'));
     }
@@ -42,6 +42,28 @@ class MotelController extends BackendController
     public function show($id)
     {
         //
+    }
+
+    public function view($id)
+    {
+        $motel = $this->motelRepository->getById($id, true);
+        if (!$motel) {
+            return redirect()->back();
+        }
+        $categories = $this->categoryRepository->allByType("MOTEL");
+        $cats_post  = $this->categoryRepository->allByType("POST");
+        \View::share(compact('categories', 'cats_post'));
+        $meta = [
+            'title'          => $motel->get('title'),
+            'description'    => htmlentities($motel->get('title')),
+            'keywords'       => $motel->get('title'),
+            'og:description' => htmlentities($motel->get('title')),
+            'og:title'       => $motel->get('title'),
+        ];
+
+        \Meta::set($meta);
+
+        return view('frontend.includes.motel_detail', compact('motel'));
     }
 
     public function edit($id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Repositories\AdminInterface;
 use App\Repositories\BannerInterface;
 use App\Repositories\CategoryInterface;
+use App\Repositories\MotelInterface;
 use App\Repositories\UserInterface;
 use App\Http\Controllers\Controller;
 
@@ -14,18 +15,21 @@ class BackendController extends Controller
     public $userRepository;
     public $categoryRepository;
     public $bannerRepository;
+    public $motelRepository;
 
     public function __construct(
         AdminInterface $adminRepository,
         UserInterface $userRepository,
         CategoryInterface $categoryRepository,
+        MotelInterface $motelRepository,
         BannerInterface $bannerRepository
     )
     {
         $this->middleware('auth:admin');
-        $this->adminRepository = $adminRepository;
-        $this->userRepository = $userRepository;
+        $this->adminRepository    = $adminRepository;
+        $this->userRepository     = $userRepository;
+        $this->motelRepository    = $motelRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->bannerRepository = $bannerRepository;
+        $this->bannerRepository   = $bannerRepository;
     }
 }

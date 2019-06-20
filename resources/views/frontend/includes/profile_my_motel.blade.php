@@ -51,7 +51,8 @@
                 </td>
                 <td class="center">
                     <div class="">
-                        <a href="" class="btn btn-primary btn_rectangle text-white">Sửa tin</a>
+                        <a href="{{ route('motel_post.post.edit',['id' => $item->get('id')]) }}"
+                           class="btn btn-primary btn_rectangle text-white">Sửa tin</a>
                         @if($item->get('status') == 1)
                             <a href="{{ route('motel_post.update_status',['id' => $item->get('id'),'status' => 3]) }}"
                                class="btn btn-danger btn_rectangle text-white">Đã cho thuê</a>
