@@ -52,6 +52,20 @@ class MotelRepository implements MotelInterface
         return $motels['data'] ? collect_recursive($motels) : false;
     }
 
+    public function allByUseNeed($use_need = 1)
+    {
+        $paginator = MotelRoom::where('status', 1)
+            ->where('use_need', $use_need)
+            ->orderBy('id', "DESC")
+            ->paginate(30);
+
+        $motels = $paginator->getCollection();
+
+        $motels = transformer_collection_paginator($motels, new MotelRoomTransformer(), $paginator);
+
+        return $motels['data'] ? collect_recursive($motels) : false;
+    }
+
     public function getByRewrite($rewrite)
     {
         $motel = MotelRoom::where('status', '=', 1)->where('slug', '=', $rewrite)->first();

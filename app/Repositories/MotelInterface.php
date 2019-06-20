@@ -17,6 +17,8 @@ interface MotelInterface
 
     public function allByCatId($cat_id);
 
+    public function allByUseNeed($use_need = 1);
+
     public function getByRewrite($rewrite);
 
     public function getById($id, $admin = false);

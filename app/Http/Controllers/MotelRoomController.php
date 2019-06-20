@@ -38,6 +38,18 @@ class MotelRoomController extends FrontEndController
         return view('frontend.includes.category', compact('motels', 'category'));
     }
 
+    public function useNeed()
+    {
+
+        $motels = $this->motelRepository->allByUseNeed();
+
+        if (!$motels) {
+            return redirect(route('index'));
+        }
+
+        return view('frontend.includes.oghep', compact('motels'));
+    }
+
     public function detail($cat_id, $rewrite)
     {
         $motel = $this->motelRepository->getByRewrite($rewrite);

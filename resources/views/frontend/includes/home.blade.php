@@ -39,7 +39,7 @@
                                 <div class="form-group amenities-box nomargin">
                                     <div class="row">
                                         @foreach($amenities ?: []  as $item)
-                                            <div class="col-md-6 norightpadding amen_item">
+                                            <div class="col-6 col-sm-6 col-md-6 norightpadding amen_item">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
                                                         <input type="checkbox" class="form-check-input amenities_check"

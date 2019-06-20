@@ -146,6 +146,11 @@
                         </li>
                     @endforeach
                     <li class="mega_menu">
+                        <a href="{{ route('motel.use_need') }}" class="main_menu_href">
+                            <div>Ở ghép</div>
+                        </a>
+                    </li>
+                    <li class="mega_menu">
                         <a href="/" class="main_menu_href">
                             <div>Bài viết</div>
                         </a>

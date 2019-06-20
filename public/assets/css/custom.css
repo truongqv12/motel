@@ -390,21 +390,27 @@ body {
 }
 
 #primary-menu ul li #dangtin {
-  color: #DD4B39;
+  color: #33cc66;
   padding: 11px 35px !important;
   font-size: 15px;
   line-height: 15px;
   height: 40px;
   margin: 20px 0;
-  border: 2px solid #DD4B39;
+  border: 2px solid #33cc66;
   border-radius: 0;
   background: none;
   font-weight: 600;
 }
 
+#primary-menu ul li #dangtin:focus,
+#primary-menu ul li #dangtin:hover,
+#primary-menu ul li #dangtin:active {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 #primary-menu ul li #dangtin:hover {
   color: #FFFFFF;
-  background-color: #DD4B39;
+  background-color: #33cc66;
 }
 
 #primary-menu ul li #dangtin:focus {
