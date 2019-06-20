@@ -542,6 +542,9 @@ $height_to_bar: 40px;
 }
 
 #footer {
+  .footer-widgets-wrap {
+    padding: 65px 0;
+  }
   background-color: #191a1a;
   h4 {
     cursor: pointer;
@@ -1769,6 +1772,7 @@ $height_to_bar: 40px;
 }
 
 .post_motel_content {
+  min-height: 350px;
   .submit-list-type {
     margin-bottom: 20px;
   }

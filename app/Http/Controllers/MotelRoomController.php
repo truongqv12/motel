@@ -56,7 +56,7 @@ class MotelRoomController extends FrontEndController
         if (!$motel) {
             return redirect(route('index'));
         }
-
+        $this->motelRepository->visited($motel->get('id'));
         $meta = [
             'title'          => $motel->get('title'),
             'description'    => htmlentities($motel->get('title')),

@@ -30,4 +30,6 @@ interface MotelInterface
     public function myMotel();
 
     public function myMotelSave();
+
+    public function visited($id);
 }

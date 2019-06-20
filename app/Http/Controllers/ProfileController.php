@@ -53,7 +53,7 @@ class ProfileController extends FrontEndController
         } else {
             return redirect(route('profile').'#tabs-2')->with('error', 'Mật khẩu cũ không đúng');
         }
-
+        $user->active = 1;
         $check = $user->save();
         if ($check) {
             return redirect()->back()->with('success', 'Cập nhật thành công');

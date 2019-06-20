@@ -136,4 +136,12 @@ class MotelRepository implements MotelInterface
         $items = transformer_collection($save, new UserMotelTransformer());
         return $items ? collect_recursive($items) : false;
     }
+
+    public function visited($id)
+    {
+        MotelRoom::where('id', $id)
+            ->update([
+                'total_view' => DB::raw('total_view + 1')
+            ]);
+    }
 }

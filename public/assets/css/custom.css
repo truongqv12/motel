@@ -568,6 +568,10 @@ body {
   background-color: #191a1a;
 }
 
+#footer .footer-widgets-wrap {
+  padding: 65px 0;
+}
+
 #footer h4 {
   cursor: pointer;
   text-transform: uppercase;
@@ -1905,6 +1909,10 @@ body {
 
 .form-control.error {
   border-color: red;
+}
+
+.post_motel_content {
+  min-height: 350px;
 }
 
 .post_motel_content .submit-list-type {
