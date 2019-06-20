@@ -426,12 +426,12 @@ if (!function_exists('setting')) {
     {
 
         if (!app()->has('settings')) {
-            $settings = (new SettingRepository())->all();
-            app()->singleton('settings', $settings->keyBy('key'));
+            $settings = (new \App\Repositories\SettingRepository())->all();
         }
-        $settings = app('settings');
 
-        return isset($settings[$key]) ? $settings[$key]->value : $default;
+        $settings = $settings->keyBy('key')->toArray();
+
+        return isset($settings[$key]) ? $settings[$key]['value'] : $default;
     }
 }
 
@@ -439,7 +439,6 @@ if (!function_exists('setting_image')) {
     function setting_image($key, $default = null)
     {
         $image_name = setting($key, $default);
-
-        return url() . '/upload/settings/' . $image_name;
+        return $image_name;
     }
 }

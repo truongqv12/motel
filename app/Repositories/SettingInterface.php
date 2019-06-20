@@ -9,11 +9,7 @@
 namespace App\Repositories;
 
 
-interface BannerInterface
+interface SettingInterface
 {
     public function all();
-
-    public function findById($id);
-
-    public function allActive($limit);
 }

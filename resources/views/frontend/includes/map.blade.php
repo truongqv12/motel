@@ -8,8 +8,8 @@
             </div>
             <div class="control_box" id="control_box">
                 <div class="form-group">
-                    <input type="text" name="search_address" id="search_address" class="form-control" placeholder="Tìm kiếm địa điểm"
-                           title="Tìm theo địa điểm">
+                    <input type="text" name="search_address" id="search_address" class="form-control"
+                           placeholder="Tìm kiếm địa điểm" title="Tìm theo địa điểm">
                 </div>
             </div>
             <div id="data-motel" data-motel="{{$motels_json}}" class="hidden"></div>

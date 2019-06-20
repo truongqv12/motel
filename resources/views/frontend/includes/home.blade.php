@@ -2,7 +2,7 @@
 
 @section('search_box')
     <section id="slider" class="banner_home slider-element clearfix"
-             style="background: url('{{asset('assets/images/slide_new.jpg')}}') center center no-repeat; background-size: cover;">
+             style="background: url('{{ setting_image('home_banner') }}') center center no-repeat; background-size: cover;">
         <div class="vertical-middle search_box">
             <div class="container clearfix" style="padding: 0 10px">
                 <form id="search-motel" class="form" action="{{route('motel.search')}}" method="GET">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Repositories\AdminInterface;
-use App\Repositories\BannerInterface;
 use App\Repositories\CategoryInterface;
 use App\Repositories\MotelInterface;
 use App\Repositories\UserInterface;
@@ -21,8 +20,7 @@ class BackendController extends Controller
         AdminInterface $adminRepository,
         UserInterface $userRepository,
         CategoryInterface $categoryRepository,
-        MotelInterface $motelRepository,
-        BannerInterface $bannerRepository
+        MotelInterface $motelRepository
     )
     {
         $this->middleware('auth:admin');
@@ -30,6 +28,5 @@ class BackendController extends Controller
         $this->userRepository     = $userRepository;
         $this->motelRepository    = $motelRepository;
         $this->categoryRepository = $categoryRepository;
-        $this->bannerRepository   = $bannerRepository;
     }
 }

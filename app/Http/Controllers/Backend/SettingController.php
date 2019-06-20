@@ -44,6 +44,7 @@ class SettingController extends Controller
             }
             $rq->merge([
                 'value' => $imgName,
+                'type'  => $rq->swe_type,
             ]);
         }
         $rq->offsetunset('swe_type');
@@ -77,6 +78,16 @@ class SettingController extends Controller
 
     public function destroy($id)
     {
-        //
+        if (auth('admin')->user()->delete != 1) {
+            return redirect()->route('administration.index')->with('error', 'Không có quyền truy cập');
+        }
+        $setting = SettingWebsite::findOrFail($id);
+
+        if ($setting->delete()) {
+            return redirect()->back()->with('success', 'Xóa thành công');
+        } else {
+            return redirect()->back()->with('error', 'Xóa không thành công');
+        }
+
     }
 }

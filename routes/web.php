@@ -55,6 +55,8 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::get('/trang-ca-nhan', 'ProfileController@index')->name('profile');
+    Route::post('/trang-ca-nhan', 'ProfileController@update')->name('profile.update');
+    Route::post('/doi-mat-khau', 'ProfileController@editPass')->name('profile.update.pass');
     Route::get('/tin-da-dang', 'ProfileController@motelPost')->name('profile.motel_post');
     Route::get('/tin-da-luu', 'ProfileController@motelSave')->name('profile.motel_save');
     Route::get('/dang-tin-mien-phi', 'MotelRoomController@showFormPostMotel')->name('motel_post.view');

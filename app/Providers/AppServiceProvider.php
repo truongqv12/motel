@@ -14,6 +14,8 @@ use App\Repositories\MotelInterface;
 use App\Repositories\MotelRepository;
 use App\Repositories\PostInterface;
 use App\Repositories\PostRepository;
+use App\Repositories\SettingInterface;
+use App\Repositories\SettingRepository;
 use App\Repositories\UserInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -50,10 +52,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(PostInterface::class, PostRepository::class);
 
-        $this->app->bind(BannerInterface::class, BannerRepository::class);
-
         $this->app->bind(MotelInterface::class, MotelRepository::class);
 
         $this->app->bind(CitiesInterface::class, CitiesRepository::class);
+
+        $this->app->bind(SettingInterface::class, SettingRepository::class);
     }
 }
