@@ -168,7 +168,10 @@ class MotelRoomController extends FrontEndController
             return view('frontend.layout.404');
         }
 
-        $cities    = $this->citiesRepository->allCity();
+        $cities   = $this->citiesRepository->allCity();
+        $district = $this->citiesRepository->allDistrict($motel->get('cty_id'));
+        $ward     = $this->citiesRepository->allDistrict($motel->get('dis_id'));
+
         $amenities = $this->motelRepository->allAmenities();
         $typeRoom  = $this->categoryRepository->allByType();
 
@@ -180,7 +183,9 @@ class MotelRoomController extends FrontEndController
             $my_amenities = [];
         }
 
-        return view('frontend.includes.edit_post_motel', compact('cities', 'amenities', 'typeRoom', 'motel', 'my_amenities'));
+        return view('frontend.includes.edit_post_motel', compact('cities', 'district',
+                'ward', 'amenities', 'typeRoom', 'motel', 'my_amenities')
+        );
     }
 
     public function updatePostMotel($id, Request $rq)

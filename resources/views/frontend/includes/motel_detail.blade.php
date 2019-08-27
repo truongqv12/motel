@@ -75,10 +75,10 @@
                                                 <hr>
                                             </div>
                                             <div class="info-price">
-                                                <a href=""><span class="icon-unlock"></span>{{$motel->get('price')}}</a>
+                                                <a href="javascript:;"><span class="icon-unlock"></span>{{$motel->get('price')}}</a>
                                             </div>
                                             <div class="info-boss">
-                                                <a href=""><span class="icon-user3"></span></a>
+                                                <a href="javascript:;"><span class="icon-user3"></span>{{($motel->get('user')->isEmpty()) ? '' : $motel->get('user')->get('name')}}</a>
                                             </div>
                                             <div class="info-phone">
                                                 <a href=""><span class="icon-phone"></span>{{$motel->get('phone')}}</a>

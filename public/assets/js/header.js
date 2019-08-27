@@ -75,6 +75,7 @@ function ajaxLoadWard(city_id) {
             city_id: city_id,
         },
         success: function (response) {
+            $('#loadWard').html('');
             $('#loadWard').html(response);
             $("#cbWard").select2({
                 disabled: false,
@@ -92,6 +93,7 @@ function ajaxLoadDistrict(city_id) {
             city_id: city_id,
         },
         success: function (response) {
+            $('#loadDistrict').html('');
             $('#loadDistrict').html(response);
             $("#cbDistrict").select2({
                 disabled: false,

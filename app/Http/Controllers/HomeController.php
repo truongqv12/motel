@@ -10,9 +10,7 @@ class HomeController extends FrontEndController
 {
     public function index()
     {
-//        dd($this->citiesRepository->allCity());
-//
-//        Meta::set($meta);
+
         $cities    = $this->citiesRepository->allCity();
         $motels    = $this->motelRepository->newMotel(18);
         $amenities = $this->motelRepository->allAmenities();

@@ -82,7 +82,7 @@
                         </div>
                         <div class="asks-first-info">
                             <h2>Giải pháp tìm kiếm mới</h2>
-                            <p>Tiết kiệm nhiều thời gian cho bạn với giải pháp và công nghệ mới</p>
+                            <p>{{ setting('text_lefy_home','...') }}</p>
                         </div>
                     </div>
                 </div>

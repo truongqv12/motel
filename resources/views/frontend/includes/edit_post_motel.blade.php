@@ -129,6 +129,11 @@
                                             <div class="" id="loadDistrict">
                                                 <select title="Chọn quận huyện" id="cbDistrict" name="district"
                                                         class="select optional form-control fct-profile-edit">
+                                                    @if($district)
+                                                        @foreach ($district ?: [] as $item)
+                                                            <option value="{{$item->get('id')}}" {{ $item->get('id') == $motel->get('cty_id') ? 'selected' : '' }}>{{$item->get('name')}}</option>
+                                                        @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -142,6 +147,11 @@
                                             <div class="" id="loadWard">
                                                 <select title="Chọn xã phường" id="cbWard" name="war_id"
                                                         class="select optional form-control fct-profile-edit">
+                                                    @if($ward)
+                                                        @foreach ($ward ?: [] as $item)
+                                                            <option value="{{$item->get('id')}}" {{ $item->get('id') == $motel->get('cty_id') ? 'selected' : '' }}>{{$item->get('name')}}</option>
+                                                        @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -358,7 +368,6 @@
     <script src="/assets/dropzone/dist/dropzone.js"></script>
     <script src="/assets/js/motel.js"></script>
     <script type="text/javascript">
-
         $("#price").inputmask({
             alias: 'numeric',
             allowMinus: false,
