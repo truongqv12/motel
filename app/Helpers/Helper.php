@@ -429,7 +429,9 @@ if (!function_exists('setting')) {
             $settings = (new \App\Repositories\SettingRepository())->all();
         }
 
-        $settings = $settings->keyBy('key')->toArray();
+        if($settings) {
+            $settings = $settings->keyBy('key')->toArray();
+        }
 
         return isset($settings[$key]) ? $settings[$key]['value'] : $default;
     }
